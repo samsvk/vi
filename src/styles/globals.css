@@ -10,9 +10,10 @@
 @layer base {
   html,
   body {
-    font-family: "Inter", sans-serif;
+    font-family: "IBM Plex Mono", monospace;
   }
 }
 body {
-  @apply w-full h-full text-white bg-black;
+  @apply w-full h-full text-white;
+  background: #0c0c0c;
 }
