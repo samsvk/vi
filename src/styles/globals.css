@@ -14,6 +14,5 @@
   }
 }
 body {
-  @apply w-full h-full text-white;
-  background: #0c0c0c;
+  @apply w-full h-full text-white bg-main-default;
 }

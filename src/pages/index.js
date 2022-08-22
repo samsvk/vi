@@ -6,8 +6,8 @@ export default function Home() {
     <>
       <Header />
       <div className="max-w-[1800px] w-full mx-auto mb-10">
-        <div class="grid grid-cols-6 gap-4 grid-rows-5 min-h-screen max-h-full py-10">
-          <div class="col-span-1 row-span-5 overflow-hidden">
+        <div className="grid max-h-full min-h-screen grid-cols-6 grid-rows-5 gap-4 py-10">
+          <div className="col-span-1 row-span-5 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -21,7 +21,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-1 row-span-2 overflow-hidden">
+          <div className="col-span-1 row-span-2 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -35,7 +35,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-1 row-span-3  overflow-hidden">
+          <div className="col-span-1 row-span-3 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -49,7 +49,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-1 row-span-4  overflow-hidden">
+          <div className="col-span-1 row-span-4 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-1 row-span-3  overflow-hidden">
+          <div className="col-span-1 row-span-3 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -76,7 +76,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div class="col-span-1 row-span-3 overflow-hidden">
+          <div className="col-span-1 row-span-3 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -89,7 +89,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div class="col-span-1 row-span-3 overflow-hidden">
+          <div className="col-span-1 row-span-3 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -103,7 +103,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-1 row-span-2 overflow-hidden">
+          <div className="col-span-1 row-span-2 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -117,7 +117,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div class="col-span-2 row-span-2 overflow-hidden">
+          <div className="col-span-2 row-span-2 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
@@ -130,7 +130,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div class="col-span-1 row-span-1 overflow-hidden">
+          <div className="col-span-1 row-span-1 overflow-hidden">
             <div className="relative h-full max-w-full mx-auto my-0">
               <Image
                 quality={100}
