@@ -22,8 +22,8 @@ export default function Header() {
           >
             <span className="relative transition-[cubic-bezier(.63,.04,.34,0.92)] duration-150 block hover:cursor-pointer after:absolute after:h-[1px] after:content-[''] after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap">
               {route === "information"
-                ? "recent work"
-                : "information"}
+                ? "Recent Work"
+                : "Information"}
             </span>
           </Link>
         </li>

@@ -1,9 +1,11 @@
-import React from "react";
 import Head from "next/head";
 import Header from "../components/header";
 import Link from "next/link";
+import { IoMdCheckmark } from "react-icons/io";
+import { useState } from "react";
 
 const Information = () => {
+  const [agree, setAgree] = useState(false);
   return (
     <>
       <Head>
@@ -61,6 +63,15 @@ const Information = () => {
                   I will not accept any commissions that I do not
                   feel comfortable drawing.
                 </li>
+                <li>
+                  Collages and Dakimakuras count as multiple
+                  units of the desired type.
+                </li>
+                <li>
+                  Additional cost will be added if the artwork
+                  should be extra clean for printing or special
+                  use cases.
+                </li>
               </ul>
             </section>
           </div>
@@ -114,25 +125,80 @@ const Information = () => {
           <div className="flex gap-12">
             <aside className="mr-10 max-w-max whitespace-nowrap  min-w-[130px]">
               <h1 className="relative text-xs font-light uppercase">
-                03 / Extra Info
+                03 / Contact Me
               </h1>
             </aside>
             <section className="flex flex-col w-full gap-3">
-              <p className="mt-0 text-xs font-light">
-                Collages and Dakimakuras count as multiple units
-                of the desired type.
+              <p className="flex items-center mt-0 text-xs font-light">
+                <span className="inline-block mr-2">
+                  I acknowledge the above conditions
+                </span>
+                <span
+                  onClick={() => setAgree((prev) => !prev)}
+                  className={`h-[13px] w-[13px] border border-white/10 hover:cursor-pointer hover:border-white/40 duration-200 inline-flex items-center justify-center ${
+                    agree &&
+                    "border-[#1e9e35] bg-[#181f19] text-[#35f558]"
+                  }`}
+                >
+                  {agree && <IoMdCheckmark />}
+                </span>
               </p>
-              <p className="mt-2 text-xs font-light">
-                Additional cost will be added if the artwork
-                should be extra clean for printing or special use
-                cases.
-              </p>
-              <p className="mt-2 text-xs font-light">
-                Listed prices are for illustrations made with my
-                usual line/coloring quality and style. You can
-                see the examples by clicking{" "}
-                <Link href="/">here</Link>
-              </p>
+
+              <div className="mt-5 text-xs font-light">
+                <ul className={`flex flex-col gap-2`}>
+                  <li className="w-max">
+                    <a
+                      href={`mailto:green.tea.leaf97@gmail.com`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`delay-100 hover:cursor-pointer 
+                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
+                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
+                      ${
+                        agree
+                          ? "pointer-events-auto opacity-1"
+                          : "pointer-events-none opacity-0"
+                      }`}
+                    >
+                      Email: green.tea.leaf97@gmail.com
+                    </a>
+                  </li>
+                  <li className="w-max">
+                    <a
+                      href={`https://discord.gg/`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`delay-200 hover:cursor-pointer 
+                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
+                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
+                      ${
+                        agree
+                          ? "pointer-events-auto opacity-1"
+                          : "pointer-events-none opacity-0"
+                      }`}
+                    >
+                      Discord: VivixStar#2959
+                    </a>
+                  </li>
+                  <li className="w-max">
+                    <a
+                      href={`https://twitter.com/vivixstarvtuber`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`delay-300 hover:cursor-pointer 
+                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
+                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
+                      ${
+                        agree
+                          ? "pointer-events-auto opacity-1"
+                          : "pointer-events-none opacity-0"
+                      }`}
+                    >
+                      Twitter: @vivixstarvtuber
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </section>
           </div>
         </div>
