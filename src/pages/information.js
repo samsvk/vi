@@ -70,46 +70,47 @@ const Information = () => {
                 02 / Pricing
               </h1>
             </aside>
-            <section className="w-full">
-              <div className="flex flex-col max-h-full min-h-screen gap-4 py-10 ">
-                <div className="flex-1 h-full">
-                  <div className="relative min-h-[200px] max-h-[200px] max-w-[160px] w-full overflow-hidden ">
-                    <Image
-                      quality={100}
-                      loading="eager"
-                      priority={true}
-                      layout="fill"
-                      objectPosition={"top"}
-                      objectFit="contain"
-                      src={"/vi/14.jpg"}
-                    />
-                  </div>
+            <section className="flex flex-col w-full gap-3">
+              <div className="flex-1">
+                <div className="w-[250px] h-[250px] relative">
+                  <Image
+                    className="flex items-center"
+                    quality={100}
+                    loading="eager"
+                    priority={true}
+                    layout="fill"
+                    objectPosition={"top"}
+                    objectFit="cover"
+                    src={`/vi/14.jpg`}
+                  />
                 </div>
-                <div className="flex-1 h-full">
-                  <div className="relative min-h-[200px] max-h-[200px] max-w-[160px] w-full overflow-hidden ">
-                    <Image
-                      quality={100}
-                      loading="eager"
-                      priority={true}
-                      layout="fill"
-                      objectPosition={"top"}
-                      objectFit="contain"
-                      src={"/vi/4.jpeg"}
-                    />
-                  </div>
+              </div>
+              <div className="flex-1">
+                <div className="w-[250px] h-[350px] relative">
+                  <Image
+                    className="flex items-center"
+                    quality={100}
+                    loading="eager"
+                    priority={true}
+                    layout="fill"
+                    objectPosition={"top"}
+                    objectFit="cover"
+                    src={`/vi/1.jpeg`}
+                  />
                 </div>
-                <div className="flex-1 h-full">
-                  <div className="relative min-h-[200px] max-h-[200px] max-w-[160px] w-full overflow-hidden ">
-                    <Image
-                      quality={100}
-                      loading="eager"
-                      priority={true}
-                      layout="fill"
-                      objectPosition={"top"}
-                      objectFit="contain"
-                      src={"/vi/2.jpeg"}
-                    />
-                  </div>
+              </div>
+              <div className="flex-1">
+                <div className="w-[250px] h-[450px] relative">
+                  <Image
+                    className="flex items-center"
+                    quality={100}
+                    loading="eager"
+                    priority={true}
+                    layout="fill"
+                    objectPosition={"top"}
+                    objectFit="cover"
+                    src={`/vi/12.jpeg`}
+                  />
                 </div>
               </div>
             </section>
