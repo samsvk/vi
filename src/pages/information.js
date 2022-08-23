@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Header from "../components/header";
+import Link from "next/link";
 
 const Information = () => {
   return (
@@ -65,54 +65,74 @@ const Information = () => {
             </section>
           </div>
           <div className="flex gap-12">
-            <aside className="mr-10 max-w-max whitespace-nowrap  min-w-[160px]">
+            <aside className="mr-10 max-w-max whitespace-nowrap  min-w-[130px]">
               <h1 className="relative text-xs font-light uppercase">
                 02 / Pricing
               </h1>
             </aside>
+            <section className="flex w-full gap-3">
+              <div className="flex flex-col justify-center flex-1 p-3 border border-white/10">
+                <h2 className="relative pb-2 text-xs font-light uppercase border-b border-white/10">
+                  Bust/Icon{" — "}
+                  <span className="font-bold tracking-wider">
+                    $75
+                  </span>
+                </h2>
+                <p className="mt-2 text-xs font-light">
+                  Portrait of the character down to the
+                  shoulders.
+                </p>
+              </div>
+              <div className="flex flex-col justify-center flex-1 p-3 border border-white/10">
+                <h2 className="relative pb-2 text-xs font-light uppercase border-b border-white/10">
+                  Half Body{" — "}
+                  <span className="font-bold tracking-wider">
+                    $120
+                  </span>
+                </h2>
+
+                <p className="mt-2 text-xs font-light">
+                  Character illustration from head down to the
+                  waist.
+                </p>
+              </div>
+              <div className="flex flex-col justify-center flex-1 p-3 border border-white/10">
+                <h2 className="relative pb-2 text-xs font-light uppercase border-b border-white/10">
+                  Full Body{" — "}
+                  <span className="font-bold tracking-wider">
+                    $150
+                  </span>
+                </h2>
+
+                <p className="mt-2 text-xs font-light">
+                  Full body illustration of the character from
+                  the head down to the legs.
+                </p>
+              </div>
+            </section>
+          </div>
+          <div className="flex gap-12">
+            <aside className="mr-10 max-w-max whitespace-nowrap  min-w-[130px]">
+              <h1 className="relative text-xs font-light uppercase">
+                03 / Extra Info
+              </h1>
+            </aside>
             <section className="flex flex-col w-full gap-3">
-              <div className="flex-1">
-                <div className="w-[250px] h-[250px] relative">
-                  <Image
-                    className="flex items-center"
-                    quality={100}
-                    loading="eager"
-                    priority={true}
-                    layout="fill"
-                    objectPosition={"top"}
-                    objectFit="cover"
-                    src={`/vi/14.jpg`}
-                  />
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="w-[250px] h-[350px] relative">
-                  <Image
-                    className="flex items-center"
-                    quality={100}
-                    loading="eager"
-                    priority={true}
-                    layout="fill"
-                    objectPosition={"top"}
-                    objectFit="cover"
-                    src={`/vi/1.jpeg`}
-                  />
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="w-[250px] h-[450px] relative">
-                  <Image
-                    className="flex items-center"
-                    quality={100}
-                    loading="eager"
-                    priority={true}
-                    layout="fill"
-                    objectPosition={"top"}
-                    objectFit="cover"
-                    src={`/vi/12.jpeg`}
-                  />
-                </div>
-              </div>
+              <p className="mt-0 text-xs font-light">
+                Collages and Dakimakuras count as multiple units
+                of the desired type.
+              </p>
+              <p className="mt-2 text-xs font-light">
+                Additional cost will be added if the artwork
+                should be extra clean for printing or special use
+                cases.
+              </p>
+              <p className="mt-2 text-xs font-light">
+                Listed prices are for illustrations made with my
+                usual line/coloring quality and style. You can
+                see the examples by clicking{" "}
+                <Link href="/">here</Link>
+              </p>
             </section>
           </div>
         </div>
