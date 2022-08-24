@@ -147,25 +147,32 @@ const Information = () => {
 
               <div className="mt-5 text-xs font-light">
                 <ul className={`flex flex-col gap-2`}>
-                  {SOCIALS.slice(1, 4).map((social, index) => (
-                    <li className="w-max">
-                      <a
-                        href={social.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`delay-300 hover:cursor-pointer 
-                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
+                  {SOCIALS.slice(1, 4).map((social, index) => {
+                    return (
+                      <li className="w-max">
+                        <a
+                          href={social.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            transitionDelay: `${
+                              (index + 2) * 100
+                            }ms`,
+                          }}
+                          className={`duration-200 hover:cursor-pointer 
+                      relative block after:absolute after:h-[1px] after:content-[''] 
                       after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
                       ${
                         agree
                           ? "pointer-events-auto opacity-1"
                           : "pointer-events-none opacity-0"
                       }`}
-                      >
-                        {social.name}: {social.at}
-                      </a>
-                    </li>
-                  ))}
+                        >
+                          {social.name}: {social.at}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </section>
