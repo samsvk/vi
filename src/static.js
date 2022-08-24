@@ -1,4 +1,9 @@
-export default [
+import { AiOutlineTwitter } from "react-icons/ai";
+import { FaDiscord } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { IoLogoTwitch } from "react-icons/io";
+
+export const WORK = [
   {
     name: "vivixstar",
     url: "1.jpeg",
@@ -78,5 +83,31 @@ export default [
       col: "col-span-1",
       row: "row-span-1",
     },
+  },
+];
+
+export const SOCIALS = [
+  {
+    url: "https://twitch.tv/vivixstar",
+    name: "Twitch",
+    icon: <IoLogoTwitch />,
+  },
+  {
+    url: "https://discord.gg/",
+    name: "Discord",
+    icon: <FaDiscord />,
+    at: "VivixStar#2959",
+  },
+  {
+    url: "https://twitter.com/vivixstarvtuber",
+    name: "Twitter",
+    icon: <AiOutlineTwitter />,
+    at: "@vivixtarvtuber",
+  },
+  {
+    url: "mailto:green.tea.leaf97@gmail.com",
+    name: "Email",
+    icon: <MdEmail />,
+    at: "@green.tea.leaf97@gmail.com",
   },
 ];

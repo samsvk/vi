@@ -3,6 +3,7 @@ import Header from "../components/header";
 import Link from "next/link";
 import { IoMdCheckmark } from "react-icons/io";
 import { useState } from "react";
+import { SOCIALS } from "../static";
 
 const Information = () => {
   const [agree, setAgree] = useState(false);
@@ -131,7 +132,7 @@ const Information = () => {
             <section className="flex flex-col w-full gap-3">
               <p className="flex items-center mt-0 text-xs font-light">
                 <span className="inline-block mr-2">
-                  I acknowledge the above conditions
+                  I acknowledge the above conditions and pricing
                 </span>
                 <span
                   onClick={() => setAgree((prev) => !prev)}
@@ -146,12 +147,13 @@ const Information = () => {
 
               <div className="mt-5 text-xs font-light">
                 <ul className={`flex flex-col gap-2`}>
-                  <li className="w-max">
-                    <a
-                      href={`mailto:green.tea.leaf97@gmail.com`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`delay-100 hover:cursor-pointer 
+                  {SOCIALS.slice(1, 4).map((social, index) => (
+                    <li className="w-max">
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`delay-300 hover:cursor-pointer 
                       relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
                       after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
                       ${
@@ -159,44 +161,11 @@ const Information = () => {
                           ? "pointer-events-auto opacity-1"
                           : "pointer-events-none opacity-0"
                       }`}
-                    >
-                      Email: green.tea.leaf97@gmail.com
-                    </a>
-                  </li>
-                  <li className="w-max">
-                    <a
-                      href={`https://discord.gg/`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`delay-200 hover:cursor-pointer 
-                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
-                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
-                      ${
-                        agree
-                          ? "pointer-events-auto opacity-1"
-                          : "pointer-events-none opacity-0"
-                      }`}
-                    >
-                      Discord: VivixStar#2959
-                    </a>
-                  </li>
-                  <li className="w-max">
-                    <a
-                      href={`https://twitter.com/vivixstarvtuber`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`delay-300 hover:cursor-pointer 
-                      relative duration-150 block after:absolute after:h-[1px] after:content-[''] 
-                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
-                      ${
-                        agree
-                          ? "pointer-events-auto opacity-1"
-                          : "pointer-events-none opacity-0"
-                      }`}
-                    >
-                      Twitter: @vivixstarvtuber
-                    </a>
-                  </li>
+                      >
+                        {social.name}: {social.at}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </section>

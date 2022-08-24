@@ -2,7 +2,7 @@ import Image from "next/image";
 import Header from "../components/header";
 import Marquee from "../components/marquee";
 import Head from "next/head";
-import Data from "../static";
+import { WORK as Data } from "../static";
 
 export default function Home() {
   return (
