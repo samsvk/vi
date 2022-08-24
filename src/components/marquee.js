@@ -3,9 +3,9 @@ export default function Marquee() {
   const [closed, setClosed] = useState(false);
   return (
     <div className="absolute top-0 flex w-full text-xs font-light bg-black">
-      <div class="relative flex py-1 overflow-x-hidden flex-row w-full">
-        <div class="flex whitespace-nowrap w-full gap-12  text-center">
-          <span class="flex-1">
+      <div className="relative flex flex-row w-full py-1 overflow-x-hidden">
+        <div className="flex w-full gap-12 text-center whitespace-nowrap">
+          <span className="flex-1">
             Commissions:{" "}
             {!closed ? (
               <span className="text-[#b32733]">Closed</span>

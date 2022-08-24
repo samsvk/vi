@@ -11,13 +11,21 @@ export const WORK = [
       col: "col-span-1",
       row: "row-span-5",
     },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_6_/_span_6]",
+    },
   },
   {
-    name: "sammy",
+    name: "svk",
     url: "14.jpg",
     pos: {
       col: "col-span-1",
       row: "row-span-2",
+    },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_3_/_span_3]",
     },
   },
   {
@@ -27,6 +35,10 @@ export const WORK = [
       col: "col-span-1",
       row: "row-span-3",
     },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
+    },
   },
   {
     name: "zentreya",
@@ -34,6 +46,10 @@ export const WORK = [
     pos: {
       col: "col-span-1",
       row: "row-span-4",
+    },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
     },
   },
   {
@@ -43,13 +59,21 @@ export const WORK = [
       col: "col-span-1",
       row: "row-span-3",
     },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
+    },
   },
   {
-    name: "vivixstar",
+    name: "branscuit",
     url: "5.jpeg",
     pos: {
       col: "col-span-1",
       row: "row-span-3",
+    },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
     },
   },
   {
@@ -59,6 +83,10 @@ export const WORK = [
       col: "col-span-1",
       row: "row-span-3",
     },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
+    },
   },
   {
     name: "xaela",
@@ -66,6 +94,10 @@ export const WORK = [
     pos: {
       col: "col-span-1",
       row: "row-span-2",
+    },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_6_/_span_6]",
     },
   },
   {
@@ -75,6 +107,10 @@ export const WORK = [
       col: "col-span-2",
       row: "row-span-2",
     },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_5_/_span_5]",
+    },
   },
   {
     name: "melparty",
@@ -82,6 +118,10 @@ export const WORK = [
     pos: {
       col: "col-span-1",
       row: "row-span-1",
+    },
+    mpos: {
+      col: "col-span-1",
+      row: "row-[span_3_/_span_3]",
     },
   },
 ];
