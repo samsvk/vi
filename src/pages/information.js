@@ -146,7 +146,13 @@ const Information = () => {
               </p>
 
               <div className="mt-5 text-xs font-light">
-                <ul className={`flex flex-col gap-2`}>
+                <ul
+                  className={`will-change-transform flex flex-col gap-2 duration-500 ${
+                    agree
+                      ? "pointer-events-auto opacity-1 transform-y-[0px]"
+                      : "pointer-events-none opacity-0 translate-y-[15px]"
+                  }`}
+                >
                   {SOCIALS.slice(1, 4).map((social, index) => {
                     return (
                       <li className="w-max">
@@ -154,19 +160,9 @@ const Information = () => {
                           href={social.url}
                           target="_blank"
                           rel="noreferrer"
-                          style={{
-                            transitionDelay: `${
-                              (index + 2) * 100
-                            }ms`,
-                          }}
-                          className={`duration-200 hover:cursor-pointer 
-                      relative block after:absolute after:h-[1px] after:content-[''] 
-                      after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap
-                      ${
-                        agree
-                          ? "pointer-events-auto opacity-1"
-                          : "pointer-events-none opacity-0"
-                      }`}
+                          className={`hover:cursor-pointer 
+                          relative block after:absolute after:h-[1px] after:content-[''] 
+                          after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap`}
                         >
                           {social.name}: {social.at}
                         </a>
