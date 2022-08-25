@@ -3,7 +3,6 @@ import Image from "next/image";
 import useWindowSize from "./useWindowSize";
 export default function Grid() {
   const size = useWindowSize();
-  console.log(size);
   return (
     <>
       {size.width > 770 ? (

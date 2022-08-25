@@ -139,10 +139,10 @@ export const SOCIALS = [
     at: "VivixStar#2959",
   },
   {
-    url: "https://twitter.com/vivixstarvtuber",
+    url: "https://twitter.com/vivixstar",
     name: "Twitter",
     icon: <AiOutlineTwitter />,
-    at: "@vivixtarvtuber",
+    at: "@vivixtar",
   },
   {
     url: "mailto:green.tea.leaf97@gmail.com",
