@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
+
 export default function Marquee() {
-  const [closed, setClosed] = useState(false);
   async function fetcher(input, init) {
     const res = await fetch(input, init);
     return res.json();
   }
 
   const { data } = useSWR("/api/scrape", fetcher, {
-    loadingTimeout: 3000,
+    loadingTimeout: 5000,
     errorRetryCount: 30000,
+    refreshInterval: 0,
   });
-
-  console.log(data?.data);
   return (
     <div className="absolute top-0 flex w-full text-xs font-light bg-black">
       <div className="relative flex flex-row w-full py-1 overflow-x-hidden">
