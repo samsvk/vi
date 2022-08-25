@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Header from "../components/header";
-import Link from "next/link";
+import Marquee from "../components/marquee";
 import { IoMdCheckmark } from "react-icons/io";
 import { useState } from "react";
 import { SOCIALS } from "../static";
@@ -13,6 +13,7 @@ const Information = () => {
         <title>Information — VIVIXSTAR</title>
       </Head>
       <div>
+        <Marquee />
         <Header />
         <div className="max-w-[800px] mx-auto flex flex-col gap-12 my-12 w-full ">
           <div className="flex-col gap-5 mx-10 md:flex">
@@ -158,6 +159,7 @@ const Information = () => {
                     return (
                       <li className="w-max">
                         <a
+                          key={index}
                           href={social.url}
                           target="_blank"
                           rel="noreferrer"
