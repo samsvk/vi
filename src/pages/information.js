@@ -157,9 +157,8 @@ const Information = () => {
                 >
                   {SOCIALS.slice(1, 4).map((social, index) => {
                     return (
-                      <li className="w-max">
+                      <li className="w-max" key={index}>
                         <a
-                          key={index}
                           href={social.url}
                           target="_blank"
                           rel="noreferrer"
