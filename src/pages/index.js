@@ -8,7 +8,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home — VIVIXSTAR</title>
+        <title>Home — VIVIXSTAR | Digital Artist</title>
+        <meta
+          name="description"
+          content="VIVIXSTAR is a digital artist with world-famous clients and continues to grow her artistic style daily on her Twitch stream while handling commissions."
+        />
       </Head>
       <Marquee />
       <Header />
