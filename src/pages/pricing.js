@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 const charTypes = {
@@ -8,6 +9,11 @@ const charTypes = {
 const artVariables = {
   background: { selected: false, price: 50 },
   commercial: { selected: false, price: 150 },
+  linestyle: [
+    { type: "line", selected: false, price: 30 },
+    { type: "flat", selected: false, price: 45 },
+    { type: "illustration", selected: false, price: 65 },
+  ],
 };
 
 export default function Pricing() {
@@ -16,6 +22,7 @@ export default function Pricing() {
   const possibleArtVariables = Object.keys(artVariables);
 
   const [price, setPrice] = useState(0);
+  const [slider, setSlider] = useState(1);
   const [state, setState] = useState({
     type: possibleCharTypes[0],
     style: possibleStyleTypes[0],
@@ -27,16 +34,17 @@ export default function Pricing() {
     const tempStyle = tempType[state.style];
 
     const collectivePriceOnVariables = possibleArtVariables.map((pav) =>
-      state.artVariables[pav].selected === true ? state.artVariables[pav].price : 0
+      state.artVariables[pav]?.selected === true ? state.artVariables[pav].price : 0
     );
     const total = collectivePriceOnVariables.reduce((total, num) => num + total, 0);
-
     setPrice(tempStyle + total);
   }, [state]);
 
+  console.log(state.artVariables.linestyle);
+
   return (
     <div className="flex items-center justify-center min-h-screen min-w-screen">
-      <div className="flex flex-col justify-center flex-1 max-w-lg gap-2 p-3 border border-white/10">
+      <div className="flex flex-col justify-center flex-1 max-w-xl gap-2 p-3 border border-white/10">
         <div className="py-2 text-xs font-light uppercase border-b border-white/10">
           Vi's pricing calculator ${price}
         </div>
@@ -65,31 +73,65 @@ export default function Pricing() {
 
         {possibleArtVariables.map((item, index) => {
           const isTrue = state.artVariables[item].selected;
-          return (
-            <div
-              key={index}
-              className="flex items-center gap-2 py-2 text-xs font-light uppercase"
-            >
-              {item}:
-              <span
-                className="w-4 h-4 border min-w-[5px] min-h-[5px] flex items-center justify-center hover:cursor-pointer"
-                onClick={() =>
-                  setState({
-                    ...state,
-                    artVariables: {
-                      ...state.artVariables,
-                      [item]: {
-                        ...state.artVariables[item],
-                        selected: !state.artVariables[item].selected,
-                      },
-                    },
-                  })
-                }
+          if (typeof Object.values(state.artVariables[item])[0] === "object") {
+            const dynamicName = Object.keys(state.artVariables)[index];
+            return (
+              <div className="py-2 text-xs font-light lowercase">
+                <ul className="flex gap-5 mt-2 uppercase">
+                  <label>Style: </label>
+                  {Object.values(state.artVariables[item]).map((item, index) => {
+                    let z = state.artVariables[dynamicName].map((item, i) => ({
+                      ...item,
+                      selected: i === index ? true : false,
+                    }));
+
+                    return (
+                      <li
+                        key={index}
+                        onClick={() =>
+                          setState({
+                            ...state,
+                            artVariables: {
+                              ...state.artVariables,
+                              [dynamicName]: z,
+                            },
+                          })
+                        }
+                      >
+                        {item.type}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          } else {
+            return (
+              <div
+                key={index}
+                className="flex items-center gap-2 py-2 text-xs font-light uppercase"
               >
-                {isTrue ? "Y" : "N"}
-              </span>
-            </div>
-          );
+                {item}:
+                <span
+                  className="w-4 h-4 border min-w-[5px] min-h-[5px] flex items-center justify-center hover:cursor-pointer"
+                  onClick={() =>
+                    setState({
+                      ...state,
+                      artVariables: {
+                        ...state.artVariables,
+                        [item]: {
+                          ...state.artVariables[item],
+                          selected: !state.artVariables[item].selected,
+                        },
+                      },
+                    })
+                  }
+                >
+                  {isTrue ? "Y" : "N"}
+                </span>
+              </div>
+            );
+          }
         })}
       </div>
     </div>
