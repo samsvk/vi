@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 const charTypes = {
-  characterArt: { icon: 250, halfBody: 450, fullBody: 650 },
-  modelArt: { icon: 450, halfBody: 1150, fullBody: 1500 },
+  CHARACTER_ART: { icon: 250, half_Body: 450, full_Body: 650 },
+  "2D_LIVE_MODEL_ART": { icon: 450, half_Body: 1150, full_Body: 1500 },
 };
 
 const artVariables = {
@@ -35,16 +35,13 @@ export default function Pricing() {
 
     const collectivePriceOnVariables = possibleArtVariables.map((pav) => {
       if (Array.isArray(state.artVariables[pav])) {
-        const x = state.artVariables[pav].map((item) =>
+        return state.artVariables[pav].map((item) =>
           item.selected ? item.price : 0
         );
-        return x;
       } else {
-        const z =
-          state.artVariables[pav]?.selected === true
-            ? state.artVariables[pav].price
-            : 0;
-        return z;
+        return state.artVariables[pav]?.selected === true
+          ? state.artVariables[pav].price
+          : 0;
       }
     });
 
@@ -67,7 +64,7 @@ export default function Pricing() {
             <label>Type: </label>
             {possibleCharTypes.map((item, index) => (
               <li key={index} onClick={() => setState({ ...state, type: item })}>
-                {item}
+                {item.replace(/_/g, " ")}
               </li>
             ))}
           </ul>
@@ -78,7 +75,7 @@ export default function Pricing() {
             <label>Style: </label>
             {possibleStyleTypes.map((item, index) => (
               <li key={index} onClick={() => setState({ ...state, style: item })}>
-                {item}
+                {item.replace(/_/g, "-")}
               </li>
             ))}
           </ul>
@@ -89,7 +86,7 @@ export default function Pricing() {
           if (typeof Object.values(state.artVariables[item])[0] === "object") {
             const dynamicName = Object.keys(state.artVariables)[index];
             return (
-              <div className="py-2 text-xs font-light lowercase">
+              <div className="py-2 text-xs font-light lowercase" key={index}>
                 <ul className="flex gap-5 mt-2 uppercase">
                   <label>Style: </label>
                   {Object.values(state.artVariables[item]).map((item, index) => {
