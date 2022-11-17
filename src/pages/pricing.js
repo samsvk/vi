@@ -40,7 +40,7 @@ export default function Pricing() {
     setPrice(tempStyle + total);
   }, [state]);
 
-  console.log(state.artVariables.linestyle);
+  console.log(state.artVariables);
 
   return (
     <div className="flex items-center justify-center min-h-screen min-w-screen">
@@ -80,10 +80,12 @@ export default function Pricing() {
                 <ul className="flex gap-5 mt-2 uppercase">
                   <label>Style: </label>
                   {Object.values(state.artVariables[item]).map((item, index) => {
-                    let z = state.artVariables[dynamicName].map((item, i) => ({
-                      ...item,
-                      selected: i === index ? true : false,
-                    }));
+                    const newArrayOfVariables = state.artVariables[dynamicName].map(
+                      (item, i) => ({
+                        ...item,
+                        selected: i === index ? true : false,
+                      })
+                    );
 
                     return (
                       <li
@@ -93,7 +95,7 @@ export default function Pricing() {
                             ...state,
                             artVariables: {
                               ...state.artVariables,
-                              [dynamicName]: z,
+                              [dynamicName]: newArrayOfVariables,
                             },
                           })
                         }
