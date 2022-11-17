@@ -5,29 +5,34 @@ const charTypes = {
   modelArt: { icon: 450, halfBody: 1150, fullBody: 1500 },
 };
 
+const artVariables = {
+  background: { selected: false, price: 50 },
+  commercial: { selected: false, price: 150 },
+};
+
 export default function Pricing() {
   const possibleCharTypes = Object.keys(charTypes);
   const possibleStyleTypes = Object.keys(Object.values(charTypes)[0]);
+  const possibleArtVariables = Object.keys(artVariables);
 
   const [price, setPrice] = useState(0);
   const [state, setState] = useState({
     type: possibleCharTypes[0],
     style: possibleStyleTypes[0],
-    value: 0,
+    artVariables: artVariables,
   });
 
   useEffect(() => {
     const tempType = charTypes[state.type];
     const tempStyle = tempType[state.style];
-    setPrice(tempStyle + state.value);
-  }, [state]);
 
-  function handleValueChange(increment, amount) {
-    setState({
-      ...state,
-      value: increment ? state.value + amount : state.value - amount,
-    });
-  }
+    const collectivePriceOnVariables = possibleArtVariables.map((pav) =>
+      state.artVariables[pav].selected === true ? state.artVariables[pav].price : 0
+    );
+    const total = collectivePriceOnVariables.reduce((total, num) => num + total, 0);
+
+    setPrice(tempStyle + total);
+  }, [state]);
 
   return (
     <div className="flex items-center justify-center min-h-screen min-w-screen">
@@ -58,21 +63,34 @@ export default function Pricing() {
           </ul>
         </div>
 
-        <div className="py-2 text-xs font-light lowercase">
-          <ul className="flex gap-5 mt-2 uppercase">
-            <label>Background: </label>
-            <li onClick={() => handleValueChange(true, 50)}>Yes</li>
-            <li onClick={() => handleValueChange(false, 50)}>No</li>
-          </ul>
-        </div>
-
-        <div className="py-2 text-xs font-light lowercase">
-          <ul className="flex gap-5 mt-2 uppercase">
-            <label>Commercial Rights/Use: </label>
-            <li onClick={() => handleValueChange(true, 150)}>Yes</li>
-            <li onClick={() => handleValueChange(false, 150)}>No</li>
-          </ul>
-        </div>
+        {possibleArtVariables.map((item, index) => {
+          const isTrue = state.artVariables[item].selected;
+          return (
+            <div
+              key={index}
+              className="flex items-center gap-2 py-2 text-xs font-light uppercase"
+            >
+              {item}:
+              <span
+                className="w-4 h-4 border min-w-[5px] min-h-[5px] flex items-center justify-center hover:cursor-pointer"
+                onClick={() =>
+                  setState({
+                    ...state,
+                    artVariables: {
+                      ...state.artVariables,
+                      [item]: {
+                        ...state.artVariables[item],
+                        selected: !state.artVariables[item].selected,
+                      },
+                    },
+                  })
+                }
+              >
+                {isTrue ? "Y" : "N"}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
