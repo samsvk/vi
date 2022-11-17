@@ -1,18 +1,19 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { RiCheckLine, RiCloseLine } from "react-icons/ri";
 
 const charTypes = {
-  CHARACTER_ART: { icon: 250, half_Body: 450, full_Body: 650 },
-  "2D_LIVE_MODEL_ART": { icon: 450, half_Body: 1150, full_Body: 1500 },
+  character_art: { icon: 250, half_Body: 450, full_Body: 650 },
+  "2d_live_model_art": { icon: 450, half_Body: 1150, full_Body: 1500 },
 };
 
 const artVariables = {
   background: { selected: false, price: 50 },
-  commercial: { selected: false, price: 150 },
+  commercial_use: { selected: false, price: 150 },
   linestyle: [
-    { type: "line", selected: false, price: 30 },
-    { type: "flat", selected: false, price: 45 },
-    { type: "illustration", selected: false, price: 65 },
+    { type: "line_art", selected: true, price: 30 },
+    { type: "flat_color", selected: false, price: 45 },
+    { type: "full_illustration", selected: false, price: 65 },
   ],
 };
 
@@ -48,36 +49,53 @@ export default function Pricing() {
     const total = collectivePriceOnVariables
       .flat()
       .reduce((total, num) => num + total, 0);
-    console.log(total);
     setPrice(tempStyle + total);
   }, [state]);
 
   return (
     <div className="flex items-center justify-center min-h-screen min-w-screen">
-      <div className="flex flex-col justify-center flex-1 max-w-xl gap-2 p-3 border border-white/10">
-        <div className="py-2 text-xs font-light uppercase border-b border-white/10">
-          Vi's pricing calculator ${price}
+      <div className="flex flex-col justify-center flex-1 max-w-lg gap-2 p-8 border bg-gray-800/10 backdrop-blur border-white/10 ">
+        <div className="p-3 mb-5 text-xs font-light uppercase border border-white/10 bg-main-default">
+          Your total is currently <span className="underline">${price}</span>
         </div>
 
-        <div className="py-2 text-xs font-light lowercase">
-          <ul className="flex gap-5 mt-2 uppercase">
-            <label>Type: </label>
-            {possibleCharTypes.map((item, index) => (
-              <li key={index} onClick={() => setState({ ...state, type: item })}>
-                {item.replace(/_/g, " ")}
-              </li>
-            ))}
+        <div className="flex flex-col py-2 text-xs font-light lowercase border-b border-white/10">
+          <label className="lowercase opacity-50">type of character art: </label>
+          <ul className="flex gap-6 mt-2 uppercase">
+            {possibleCharTypes.map((item, index) => {
+              const isActive = state.type === item;
+              return (
+                <li
+                  key={index}
+                  onClick={() => setState({ ...state, type: item })}
+                  className={`hover:cursor-pointer hover:underline ${
+                    isActive ? "text-green-500 underline" : "text-white"
+                  }`}
+                >
+                  {item.replace(/_/g, " ")}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
-        <div className="py-2 text-xs font-light lowercase">
-          <ul className="flex gap-5 mt-2 uppercase">
-            <label>Style: </label>
-            {possibleStyleTypes.map((item, index) => (
-              <li key={index} onClick={() => setState({ ...state, style: item })}>
-                {item.replace(/_/g, "-")}
-              </li>
-            ))}
+        <div className="flex flex-col py-2 text-xs font-light lowercase border-b border-white/10">
+          <label className="lowercase opacity-50">character style: </label>
+          <ul className="flex gap-6 mt-2 uppercase">
+            {possibleStyleTypes.map((item, index) => {
+              const isActive = state.style === item;
+              return (
+                <li
+                  className={`hover:cursor-pointer hover:underline ${
+                    isActive ? "text-green-500 underline" : "text-white"
+                  }`}
+                  key={index}
+                  onClick={() => setState({ ...state, style: item })}
+                >
+                  {item.replace(/_/g, " ")}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -86,31 +104,35 @@ export default function Pricing() {
           if (typeof Object.values(state.artVariables[item])[0] === "object") {
             const dynamicName = Object.keys(state.artVariables)[index];
             return (
-              <div className="py-2 text-xs font-light lowercase" key={index}>
-                <ul className="flex gap-5 mt-2 uppercase">
-                  <label>Style: </label>
+              <div
+                className="flex-col py-2 text-xs font-light lowercase border-b border-white/10"
+                key={index}
+              >
+                <label className="lowercase opacity-50">{item}:</label>
+                <ul className="flex gap-6 mt-2 uppercase">
                   {Object.values(state.artVariables[item]).map((item, index) => {
-                    const newArrayOfVariables = state.artVariables[dynamicName].map(
-                      (item, i) => ({
-                        ...item,
-                        selected: i === index ? true : false,
-                      })
-                    );
-
                     return (
                       <li
+                        className={`hover:cursor-pointer hover:underline ${
+                          item.selected ? "text-green-500 underline" : "text-white"
+                        }`}
                         key={index}
                         onClick={() =>
                           setState({
                             ...state,
                             artVariables: {
                               ...state.artVariables,
-                              [dynamicName]: newArrayOfVariables,
+                              [dynamicName]: state.artVariables[dynamicName].map(
+                                (item, i) => ({
+                                  ...item,
+                                  selected: i === index ? true : false,
+                                })
+                              ),
                             },
                           })
                         }
                       >
-                        {item.type}
+                        {item.type.replace(/_/g, " ")}
                       </li>
                     );
                   })}
@@ -121,11 +143,16 @@ export default function Pricing() {
             return (
               <div
                 key={index}
-                className="flex items-center gap-2 py-2 text-xs font-light uppercase"
+                className="flex items-center gap-2 py-2 text-xs font-light uppercase border-b border-white/10 flex-column"
               >
-                {item}:
+                <label className="lowercase opacity-50">
+                  {item.replace(/_/g, " ")}:{" "}
+                </label>
                 <span
-                  className="w-4 h-4 border min-w-[5px] min-h-[5px] flex items-center justify-center hover:cursor-pointer"
+                  className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center hover:cursor-pointer
+                  transition-[background]
+                  ${!isTrue ? "bg-white/10" : "bg-green-900"}
+                  `}
                   onClick={() =>
                     setState({
                       ...state,
@@ -138,9 +165,7 @@ export default function Pricing() {
                       },
                     })
                   }
-                >
-                  {isTrue ? "Y" : "N"}
-                </span>
+                ></span>
               </div>
             );
           }

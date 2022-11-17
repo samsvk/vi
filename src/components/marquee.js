@@ -21,10 +21,7 @@ export default function Marquee() {
             <div className="flex w-full gap-12 text-center whitespace-nowrap">
               <span className="flex-1">
                 Commissions:{" "}
-                {data?.data
-                  ?.split(" ")[1]
-                  ?.toLowerCase()
-                  ?.includes("closed") ? (
+                {data?.data?.split(" ")[1]?.toLowerCase()?.includes("closed") ? (
                   <span className="text-[#b32733]">Closed</span>
                 ) : (
                   <span className="text-[#1e9e35]">Open</span>
@@ -34,9 +31,7 @@ export default function Marquee() {
           </>
         ) : (
           <div className="flex w-full gap-12 text-center whitespace-nowrap">
-            <span className="flex-1">
-              Loading Commission Status...
-            </span>
+            <span className="flex-1">Loading Commission Status...</span>
           </div>
         )}
       </div>
