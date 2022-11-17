@@ -33,14 +33,27 @@ export default function Pricing() {
     const tempType = charTypes[state.type];
     const tempStyle = tempType[state.style];
 
-    const collectivePriceOnVariables = possibleArtVariables.map((pav) =>
-      state.artVariables[pav]?.selected === true ? state.artVariables[pav].price : 0
-    );
-    const total = collectivePriceOnVariables.reduce((total, num) => num + total, 0);
+    const collectivePriceOnVariables = possibleArtVariables.map((pav) => {
+      if (Array.isArray(state.artVariables[pav])) {
+        const x = state.artVariables[pav].map((item) =>
+          item.selected ? item.price : 0
+        );
+        return x;
+      } else {
+        const z =
+          state.artVariables[pav]?.selected === true
+            ? state.artVariables[pav].price
+            : 0;
+        return z;
+      }
+    });
+
+    const total = collectivePriceOnVariables
+      .flat()
+      .reduce((total, num) => num + total, 0);
+    console.log(total);
     setPrice(tempStyle + total);
   }, [state]);
-
-  console.log(state.artVariables);
 
   return (
     <div className="flex items-center justify-center min-h-screen min-w-screen">
