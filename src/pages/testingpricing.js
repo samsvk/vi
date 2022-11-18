@@ -27,14 +27,22 @@ const TYPES_OF_CHARACTERS = {
     variables: {
       ...POSSIBLE_ART_VARIABLES,
     },
-    main: { Icon: 250, Half_Body: 450, Full_Body: 650 },
+    pricing: [
+      { selected: true, type: "icon", price: 250 },
+      { selected: false, type: "half body", price: 450 },
+      { selected: false, type: "full body", price: 650 },
+    ],
   },
   "2D_MODEL_ART": {
     variables: {
       ...POSSIBLE_ART_VARIABLES,
       Background: { enabled: false },
     },
-    main: { Icon: 650, Half_Body: 1150, Full_Body: 1500 },
+    pricing: [
+      { selected: true, type: "icon", price: 650 },
+      { selected: false, type: "half body", price: 1150 },
+      { selected: false, type: "full body", price: 1550 },
+    ],
   },
 };
 
@@ -45,8 +53,9 @@ export default function Pricing() {
     data: TYPES_OF_CHARACTERS[CHARACTER_OPTIONS[0]],
   });
   const [price, setPrice] = React.useState(0);
-  const MAIN_OPTIONS = Object.keys(state.data.main);
   const VARIABLE_OPTIONS = Object.keys(state.data.variables);
+
+  console.log(state.data);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
@@ -67,8 +76,27 @@ export default function Pricing() {
         })}
       </div>
       <ul className="flex gap-2 mb-10">
-        {MAIN_OPTIONS.map((item, index) => (
-          <li key={index}>{item}</li>
+        {state.data.pricing.map((item, index) => (
+          <li
+            key={index}
+            onClick={() =>
+              setState(() => {
+                return {
+                  ...state,
+                  data: {
+                    ...state.data,
+                    pricing: state.data.pricing.map((item, idx) => {
+                      return idx === index
+                        ? { ...item, selected: !item.selected }
+                        : { ...item, selected: false };
+                    }),
+                  },
+                };
+              })
+            }
+          >
+            {item.type}
+          </li>
         ))}
       </ul>
       <ul className="flex flex-col gap-2">
@@ -99,8 +127,6 @@ const ArtVariableSelection = ({
   setState,
 }) => {
   if (!variableOptions.enabled) return null;
-  console.log(state);
-
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
