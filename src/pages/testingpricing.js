@@ -4,19 +4,16 @@ const POSSIBLE_ART_VARIABLES = {
   Background: {
     enabled: true,
     type: "CHECKBOX",
-    selected: false,
-    pricing: [{ selected: true, type: "default", price: 50 }],
+    pricing: [{ selected: false, type: "default", price: 50 }],
   },
   Commercial_Use: {
     enabled: true,
     type: "CHECKBOX",
-    selected: false,
-    pricing: [{ selected: true, type: "default", price: 150 }],
+    pricing: [{ selected: false, type: "default", price: 150 }],
   },
   Linestyle: {
     enabled: true,
     type: "DROPDOWN",
-    selected: false,
     pricing: [
       { selected: true, type: "Line", price: 30 },
       { selected: false, type: "Flat_Color", price: 45 },
@@ -27,14 +24,12 @@ const POSSIBLE_ART_VARIABLES = {
 
 const TYPES_OF_CHARACTERS = {
   Character_Art: {
-    selected: false,
     variables: {
       ...POSSIBLE_ART_VARIABLES,
     },
     main: { Icon: 250, Half_Body: 450, Full_Body: 650 },
   },
   "2D_MODEL_ART": {
-    selected: false,
     variables: {
       ...POSSIBLE_ART_VARIABLES,
       Background: { enabled: false },
@@ -84,6 +79,9 @@ export default function Pricing() {
               <ArtVariableSelection
                 variable={variable}
                 variableOptions={variableOptions}
+                index={index}
+                state={state}
+                setState={setState}
               />
             </div>
           );
@@ -93,14 +91,45 @@ export default function Pricing() {
   );
 }
 
-const ArtVariableSelection = ({ variable, variableOptions }) => {
+const ArtVariableSelection = ({
+  variable,
+  variableOptions,
+  index,
+  state,
+  setState,
+}) => {
   if (!variableOptions.enabled) return null;
+  console.log(state);
+
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
         <div className="flex gap-2">
           {variable}:{" "}
           <span
+            onClick={() =>
+              setState(() => {
+                return {
+                  ...state,
+                  data: {
+                    ...state.data,
+                    variables: {
+                      ...state.data.variables,
+                      [variable]: {
+                        ...state.data.variables[variable],
+                        pricing: state.data.variables[variable].pricing.map(
+                          (item, idx) => {
+                            return idx === index
+                              ? { ...item, selected: !item.selected }
+                              : item;
+                          }
+                        ),
+                      },
+                    },
+                  },
+                };
+              })
+            }
             className={`text-md border-white/5 border w-6 h-6 rounded-md flex items-center justify-center hover:cursor-pointer
                   transition-[background]`}
           ></span>
@@ -113,7 +142,34 @@ const ArtVariableSelection = ({ variable, variableOptions }) => {
           {variable}:
           <ul className="flex gap-2">
             {variableOptions.pricing.map((item, index) => (
-              <li key={index}>{item.type}</li>
+              <li
+                key={index}
+                onClick={() =>
+                  setState(() => {
+                    return {
+                      ...state,
+                      data: {
+                        ...state.data,
+                        variables: {
+                          ...state.data.variables,
+                          [variable]: {
+                            ...state.data.variables[variable],
+                            pricing: state.data.variables[variable].pricing.map(
+                              (item, idx) => {
+                                return idx === index
+                                  ? { ...item, selected: !item.selected }
+                                  : { ...item, selected: false };
+                              }
+                            ),
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+              >
+                {item.type}
+              </li>
             ))}
           </ul>
         </div>
