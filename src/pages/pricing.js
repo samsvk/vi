@@ -54,10 +54,18 @@ export default function Pricing() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
-      <div className="relative z-10 flex flex-col justify-center w-full max-w-xl p-8 border rounded-lg border-white/5 h-max bg-black/10">
+      <div className="relative z-10 flex flex-col justify-center w-full px-6 py-4 border rounded-lg max-w-max border-white/5 h-max bg-black/10">
+        <div className="py-3 border-b border-white/5">
+          <label className="text-xl font-semibold opacity-50 min-w-[120px]">
+            Vi's Price Calculator: <span className="text-white">${price}</span>
+          </label>
+        </div>
+
         <div className="py-3 border-b border-white/5">
           <ul className="flex items-center gap-4">
-            <label className="">Character Type: </label>
+            <label className="text-xs  opacity-50 min-w-[120px]">
+              Character Type:{" "}
+            </label>
             {possibleCharTypes.map((item, index) => {
               const isActive = state.type === item;
               return (
@@ -79,7 +87,9 @@ export default function Pricing() {
 
         <div className="py-3 border-b border-white/5">
           <ul className="flex items-center gap-4">
-            <label>Character Style: </label>
+            <label className="text-xs  opacity-50 min-w-[120px]">
+              Character Style:{" "}
+            </label>
             {possibleStyleTypes.map((item, index) => {
               const isActive = state.style === item;
               return (
@@ -106,7 +116,9 @@ export default function Pricing() {
             return (
               <div key={index}>
                 <ul className="flex items-center gap-4 py-3">
-                  <label>{item}: </label>
+                  <label className="text-xs  opacity-50 min-w-[120px]">
+                    {item}:{" "}
+                  </label>
                   {Object.values(state.artVariables[item]).map((item, index) => {
                     return (
                       <li
@@ -144,9 +156,11 @@ export default function Pricing() {
                 key={index}
                 className="flex items-center gap-4 py-3 border-b border-white/5 flex-column"
               >
-                <label>{item.replace(/_/g, " ")}: </label>
+                <label className="text-xs  opacity-50 min-w-[120px]">
+                  {item.replace(/_/g, " ")}:{" "}
+                </label>
                 <span
-                  className={`border-white/5 border w-4 h-4 rounded-sm flex items-center justify-center hover:cursor-pointer
+                  className={`border-white/5 border w-6 h-6 rounded-md flex items-center justify-center hover:cursor-pointer
                   transition-[background]
                   ${
                     isTrue
