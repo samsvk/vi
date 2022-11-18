@@ -56,8 +56,9 @@ export default function Pricing() {
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
       <div className="relative z-10 flex flex-col justify-center w-full px-6 py-4 border rounded-lg max-w-max border-white/5 h-max bg-black/10">
         <div className="py-3 border-b border-white/5">
-          <label className="text-xl font-semibold opacity-50 min-w-[120px]">
-            Vi's Price Calculator: <span className="text-white">${price}</span>
+          <label className="text-md min-w-[120px]">
+            Vi's Price Calculator - Total:{" "}
+            <span className="text-green-700 border-green-700">${price}</span>
           </label>
         </div>
 
@@ -72,7 +73,7 @@ export default function Pricing() {
                 <li
                   key={index}
                   onClick={() => setState({ ...state, type: item })}
-                  className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                  className={`text-md hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
                     isActive
                       ? "bg-green-900/10 border-green-700 text-green-700"
                       : "text-inherit"
@@ -94,7 +95,7 @@ export default function Pricing() {
               const isActive = state.style === item;
               return (
                 <li
-                  className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                  className={`text-md hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
                     isActive
                       ? "bg-green-900/10 border-green-700 text-green-700"
                       : "text-inherit"
@@ -122,7 +123,7 @@ export default function Pricing() {
                   {Object.values(state.artVariables[item]).map((item, index) => {
                     return (
                       <li
-                        className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                        className={`text-md hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
                           item.selected
                             ? "bg-green-900/10 border-green-700 text-green-700"
                             : "text-inherit"
@@ -160,7 +161,7 @@ export default function Pricing() {
                   {item.replace(/_/g, " ")}:{" "}
                 </label>
                 <span
-                  className={`border-white/5 border w-6 h-6 rounded-md flex items-center justify-center hover:cursor-pointer
+                  className={`text-md border-white/5 border w-6 h-6 rounded-md flex items-center justify-center hover:cursor-pointer
                   transition-[background]
                   ${
                     isTrue
