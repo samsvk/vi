@@ -53,20 +53,21 @@ export default function Pricing() {
   }, [state]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-[#f8f8f8] text-[#343434] tracking-tight font-[14px] font-semibold">
-      {/* ${price} */}
-      <div className="flex flex-col justify-center w-full max-w-xl p-8 border rounded-lg border-[rgba(0,0,0,.06)] h-max bg-[#fffefc] ">
-        <div className="border-b border-[rgba(0,0,0,.06)] py-3">
+    <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
+      <div className="relative z-10 flex flex-col justify-center w-full max-w-xl p-8 border rounded-lg border-white/5 h-max bg-black/10">
+        <div className="py-3 border-b border-white/5">
           <ul className="flex items-center gap-4">
-            <label>Character Type: </label>
+            <label className="">Character Type: </label>
             {possibleCharTypes.map((item, index) => {
               const isActive = state.type === item;
               return (
                 <li
                   key={index}
                   onClick={() => setState({ ...state, type: item })}
-                  className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
-                    isActive ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
+                  className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                    isActive
+                      ? "bg-green-900/10 border-green-700 text-green-700"
+                      : "text-inherit"
                   }`}
                 >
                   {item.replace(/_/g, " ")}
@@ -76,15 +77,17 @@ export default function Pricing() {
           </ul>
         </div>
 
-        <div className="border-b border-[rgba(0,0,0,.06)] py-3">
+        <div className="py-3 border-b border-white/5">
           <ul className="flex items-center gap-4">
             <label>Character Style: </label>
             {possibleStyleTypes.map((item, index) => {
               const isActive = state.style === item;
               return (
                 <li
-                  className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
-                    isActive ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
+                  className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                    isActive
+                      ? "bg-green-900/10 border-green-700 text-green-700"
+                      : "text-inherit"
                   }`}
                   key={index}
                   onClick={() => setState({ ...state, style: item })}
@@ -107,8 +110,10 @@ export default function Pricing() {
                   {Object.values(state.artVariables[item]).map((item, index) => {
                     return (
                       <li
-                        className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
-                          item.selected ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
+                        className={`hover:cursor-pointer py-1 px-2.5 bg-white/5 rounded-md border border-white/5 ${
+                          item.selected
+                            ? "bg-green-900/10 border-green-700 text-green-700"
+                            : "text-inherit"
                         }`}
                         key={index}
                         onClick={() =>
@@ -137,13 +142,17 @@ export default function Pricing() {
             return (
               <div
                 key={index}
-                className="flex items-center border-b border-[rgba(0,0,0,.06)] flex-column  py-3 gap-4"
+                className="flex items-center gap-4 py-3 border-b border-white/5 flex-column"
               >
                 <label>{item.replace(/_/g, " ")}: </label>
                 <span
-                  className={`border-[rgba(0,0,0,.06)] border w-6 h-6 rounded-sm flex items-center justify-center hover:cursor-pointer
+                  className={`border-white/5 border w-4 h-4 rounded-sm flex items-center justify-center hover:cursor-pointer
                   transition-[background]
-                  ${!isTrue ? "bg-[#f8f8f8]" : "bg-[#f8f8f8]"}
+                  ${
+                    isTrue
+                      ? "bg-green-900/10 border-green-700 text-green-700"
+                      : " bg-main-default"
+                  }
                   `}
                   onClick={() =>
                     setState({
