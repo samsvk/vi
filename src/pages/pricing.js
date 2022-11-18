@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import { RiCheckLine, RiCloseLine } from "react-icons/ri";
 
 const charTypes = {
-  character_art: { icon: 250, half_Body: 450, full_Body: 650 },
-  "2d_live_model_art": { icon: 450, half_Body: 1150, full_Body: 1500 },
+  Character_Art: { Icon: 250, Half_Body: 450, Full_Body: 650 },
+  "2D_Live_Model_Art": { Icon: 450, Half_Body: 1150, Full_Body: 1500 },
 };
 
 const artVariables = {
-  background: { selected: false, price: 50 },
-  commercial_use: { selected: false, price: 150 },
-  linestyle: [
-    { type: "line_art", selected: true, price: 30 },
-    { type: "flat_color", selected: false, price: 45 },
-    { type: "full_illustration", selected: false, price: 65 },
+  Background: { selected: false, price: 50 },
+  Commercial_Use: { selected: false, price: 150 },
+  Linestyle: [
+    { type: "Line_Art", selected: true, price: 30 },
+    { type: "Flat_Color", selected: false, price: 45 },
+    { type: "Full_Illustration", selected: false, price: 65 },
   ],
 };
 
@@ -53,23 +53,20 @@ export default function Pricing() {
   }, [state]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen min-w-screen">
-      <div className="flex flex-col justify-center flex-1 max-w-lg gap-2 p-8 border bg-gray-800/10 backdrop-blur border-white/10 ">
-        <div className="p-3 mb-5 text-xs font-light uppercase border border-white/10 bg-main-default">
-          Your total is currently <span className="underline">${price}</span>
-        </div>
-
-        <div className="flex flex-col py-2 text-xs font-light lowercase border-b border-white/10">
-          <label className="lowercase opacity-50">type of character art: </label>
-          <ul className="flex gap-6 mt-2 uppercase">
+    <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-[#f8f8f8] text-[#343434] tracking-tight font-[14px] font-semibold">
+      {/* ${price} */}
+      <div className="flex flex-col justify-center w-full max-w-xl p-8 border rounded-lg border-[rgba(0,0,0,.06)] h-max bg-[#fffefc] ">
+        <div className="border-b border-[rgba(0,0,0,.06)] py-3">
+          <ul className="flex items-center gap-4">
+            <label>Character Type: </label>
             {possibleCharTypes.map((item, index) => {
               const isActive = state.type === item;
               return (
                 <li
                   key={index}
                   onClick={() => setState({ ...state, type: item })}
-                  className={`hover:cursor-pointer hover:underline ${
-                    isActive ? "text-green-500 underline" : "text-white"
+                  className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
+                    isActive ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
                   }`}
                 >
                   {item.replace(/_/g, " ")}
@@ -79,15 +76,15 @@ export default function Pricing() {
           </ul>
         </div>
 
-        <div className="flex flex-col py-2 text-xs font-light lowercase border-b border-white/10">
-          <label className="lowercase opacity-50">character style: </label>
-          <ul className="flex gap-6 mt-2 uppercase">
+        <div className="border-b border-[rgba(0,0,0,.06)] py-3">
+          <ul className="flex items-center gap-4">
+            <label>Character Style: </label>
             {possibleStyleTypes.map((item, index) => {
               const isActive = state.style === item;
               return (
                 <li
-                  className={`hover:cursor-pointer hover:underline ${
-                    isActive ? "text-green-500 underline" : "text-white"
+                  className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
+                    isActive ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
                   }`}
                   key={index}
                   onClick={() => setState({ ...state, style: item })}
@@ -104,17 +101,14 @@ export default function Pricing() {
           if (typeof Object.values(state.artVariables[item])[0] === "object") {
             const dynamicName = Object.keys(state.artVariables)[index];
             return (
-              <div
-                className="flex-col py-2 text-xs font-light lowercase border-b border-white/10"
-                key={index}
-              >
-                <label className="lowercase opacity-50">{item}:</label>
-                <ul className="flex gap-6 mt-2 uppercase">
+              <div key={index}>
+                <ul className="flex items-center gap-4 py-3">
+                  <label>{item}: </label>
                   {Object.values(state.artVariables[item]).map((item, index) => {
                     return (
                       <li
-                        className={`hover:cursor-pointer hover:underline ${
-                          item.selected ? "text-green-500 underline" : "text-white"
+                        className={`hover:cursor-pointer py-1 px-2.5 hover:bg-[rgba(0,0,0,.045)] rounded-md ${
+                          item.selected ? "bg-[rgba(0,0,0,.045)]" : "text-inherit"
                         }`}
                         key={index}
                         onClick={() =>
@@ -143,15 +137,13 @@ export default function Pricing() {
             return (
               <div
                 key={index}
-                className="flex items-center gap-2 py-2 text-xs font-light uppercase border-b border-white/10 flex-column"
+                className="flex items-center border-b border-[rgba(0,0,0,.06)] flex-column  py-3 gap-4"
               >
-                <label className="lowercase opacity-50">
-                  {item.replace(/_/g, " ")}:{" "}
-                </label>
+                <label>{item.replace(/_/g, " ")}: </label>
                 <span
-                  className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center hover:cursor-pointer
+                  className={`border-[rgba(0,0,0,.06)] border w-6 h-6 rounded-sm flex items-center justify-center hover:cursor-pointer
                   transition-[background]
-                  ${!isTrue ? "bg-white/10" : "bg-green-900"}
+                  ${!isTrue ? "bg-[#f8f8f8]" : "bg-[#f8f8f8]"}
                   `}
                   onClick={() =>
                     setState({
@@ -165,7 +157,9 @@ export default function Pricing() {
                       },
                     })
                   }
-                ></span>
+                >
+                  {isTrue && <RiCheckLine style={{ verticalAlign: "middle" }} />}
+                </span>
               </div>
             );
           }
