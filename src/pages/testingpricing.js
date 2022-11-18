@@ -55,8 +55,6 @@ export default function Pricing() {
   const [price, setPrice] = React.useState(0);
   const VARIABLE_OPTIONS = Object.keys(state.data.variables);
 
-  console.log(state.data);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
       <h1 className="mb-10">${price}</h1>
