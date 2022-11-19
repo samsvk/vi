@@ -6,10 +6,10 @@ const POSSIBLE_ART_VARIABLES = {
     type: "CHECKBOX",
     pricing: [{ selected: false, type: "default", price: 50 }],
   },
-  Commercial_Use: {
+  Commercial: {
     enabled: true,
     type: "CHECKBOX",
-    pricing: [{ selected: false, type: "default", price: 150 }],
+    pricing: [{ selected: false, type: "default", price: 50 }],
   },
   Linestyle: {
     enabled: true,
@@ -55,6 +55,28 @@ export default function Pricing() {
   const [price, setPrice] = React.useState(0);
   const VARIABLE_OPTIONS = Object.keys(state.data.variables);
 
+  React.useEffect(() => {
+    const mainPrices = state.data.pricing.map((item, index) =>
+      item.selected ? item.price : 0
+    );
+
+    const variablePrices = VARIABLE_OPTIONS.map((item, index) => {
+      return state.data?.variables[item]?.pricing?.map((_, idx) => {
+        return _.selected ? _.price : 0;
+      });
+    });
+
+    const flattened = mainPrices.concat(variablePrices.flat());
+
+    const total = flattened
+      .filter((item) => item !== undefined)
+      .reduce((total, num) => num + total, 0);
+
+    setPrice(total);
+  }, [state]);
+
+  console.log(state);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
       <h1 className="mb-10">${price}</h1>
@@ -85,7 +107,7 @@ export default function Pricing() {
                     ...state.data,
                     pricing: state.data.pricing.map((item, idx) => {
                       return idx === index
-                        ? { ...item, selected: !item.selected }
+                        ? { ...item, selected: true }
                         : { ...item, selected: false };
                     }),
                   },
@@ -125,6 +147,7 @@ const ArtVariableSelection = ({
   setState,
 }) => {
   if (!variableOptions.enabled) return null;
+
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
@@ -142,11 +165,7 @@ const ArtVariableSelection = ({
                       [variable]: {
                         ...state.data.variables[variable],
                         pricing: state.data.variables[variable].pricing.map(
-                          (item, idx) => {
-                            return idx === index
-                              ? { ...item, selected: !item.selected }
-                              : item;
-                          }
+                          (item) => ({ ...item, selected: !item.selected })
                         ),
                       },
                     },
@@ -159,7 +178,6 @@ const ArtVariableSelection = ({
           ></span>
         </div>
       );
-      break;
     case "DROPDOWN":
       return (
         <div className="flex gap-2">
@@ -181,7 +199,7 @@ const ArtVariableSelection = ({
                             pricing: state.data.variables[variable].pricing.map(
                               (item, idx) => {
                                 return idx === index
-                                  ? { ...item, selected: !item.selected }
+                                  ? { ...item, selected: true }
                                   : { ...item, selected: false };
                               }
                             ),
@@ -198,7 +216,7 @@ const ArtVariableSelection = ({
           </ul>
         </div>
       );
-      break;
+
     default:
       return null;
   }
