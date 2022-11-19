@@ -81,10 +81,13 @@ export default function Pricing() {
       <h1 className="mb-10">${price}</h1>
       <div className="flex gap-2 mb-10">
         {CHARACTER_OPTIONS.map((option, index) => {
+          const isSelected = state.type;
           return (
             <h1
               key={index}
-              className=""
+              className={`${
+                isSelected === option ? "text-green-500" : "text-inherit"
+              }`}
               onClick={() =>
                 setState({ type: option, data: TYPES_OF_CHARACTERS[option] })
               }
@@ -95,28 +98,31 @@ export default function Pricing() {
         })}
       </div>
       <ul className="flex gap-2 mb-10">
-        {state.data.pricing.map((item, index) => (
-          <li
-            key={index}
-            onClick={() =>
-              setState(() => {
-                return {
-                  ...state,
-                  data: {
-                    ...state.data,
-                    pricing: state.data.pricing.map((item, idx) => {
-                      return idx === index
-                        ? { ...item, selected: true }
-                        : { ...item, selected: false };
-                    }),
-                  },
-                };
-              })
-            }
-          >
-            {item.type}
-          </li>
-        ))}
+        {state.data.pricing.map((item, index) => {
+          return (
+            <li
+              key={index}
+              className={`${item.selected ? "text-green-500" : "text-inherit"}`}
+              onClick={() =>
+                setState(() => {
+                  return {
+                    ...state,
+                    data: {
+                      ...state.data,
+                      pricing: state.data.pricing.map((item, idx) => {
+                        return idx === index
+                          ? { ...item, selected: true }
+                          : { ...item, selected: false };
+                      }),
+                    },
+                  };
+                })
+              }
+            >
+              {item.type}
+            </li>
+          );
+        })}
       </ul>
       <ul className="flex flex-col gap-2">
         {VARIABLE_OPTIONS.map((variable, index) => {
@@ -152,6 +158,7 @@ const ArtVariableSelection = ({
       return (
         <div className="flex gap-2">
           {variable}:{" "}
+          {console.log(state.data.variables[variable].pricing[0].selected)}
           <span
             onClick={() =>
               setState(() => {
@@ -173,7 +180,11 @@ const ArtVariableSelection = ({
               })
             }
             className={`text-md border-white/5 border w-6 h-6 rounded-md flex items-center justify-center hover:cursor-pointer
-                  transition-[background]`}
+                  transition-[background] ${
+                    state.data.variables[variable].pricing[0].selected
+                      ? "bg-green-500"
+                      : "text-inherit"
+                  }`}
           ></span>
         </div>
       );
@@ -184,6 +195,11 @@ const ArtVariableSelection = ({
           <ul className="flex gap-2">
             {variableOptions.pricing.map((item, index) => (
               <li
+                className={`${
+                  state.data.variables[variable].pricing[index].selected
+                    ? "text-green-500"
+                    : "text-inherit"
+                }`}
                 key={index}
                 onClick={() =>
                   setState(() => {
