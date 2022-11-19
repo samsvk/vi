@@ -9,7 +9,7 @@ const POSSIBLE_ART_VARIABLES = {
   Commercial: {
     enabled: true,
     type: "CHECKBOX",
-    pricing: [{ selected: false, type: "default", price: 50 }],
+    pricing: [{ selected: false, type: "default", price: 150 }],
   },
   Linestyle: {
     enabled: true,
@@ -36,6 +36,7 @@ const TYPES_OF_CHARACTERS = {
   "2D_MODEL_ART": {
     variables: {
       ...POSSIBLE_ART_VARIABLES,
+      Linestyle: { enabled: false },
       Background: { enabled: false },
     },
     pricing: [
@@ -74,8 +75,6 @@ export default function Pricing() {
 
     setPrice(total);
   }, [state]);
-
-  console.log(state);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-inter min-w-screen bg-main-default text-[#aaa] tracking-tight font-normal text-sm relative">
