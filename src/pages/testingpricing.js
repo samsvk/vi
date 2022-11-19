@@ -158,7 +158,6 @@ const ArtVariableSelection = ({
       return (
         <div className="flex gap-2">
           {variable}:{" "}
-          {console.log(state.data.variables[variable].pricing[0].selected)}
           <span
             onClick={() =>
               setState(() => {
