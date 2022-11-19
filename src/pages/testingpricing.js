@@ -28,21 +28,21 @@ const TYPES_OF_CHARACTERS = {
       ...POSSIBLE_ART_VARIABLES,
     },
     pricing: [
-      { selected: true, type: "icon", price: 250 },
-      { selected: false, type: "half body", price: 450 },
-      { selected: false, type: "full body", price: 650 },
+      { selected: true, type: "Icon", price: 250 },
+      { selected: false, type: "Half Body", price: 450 },
+      { selected: false, type: "Full Body", price: 650 },
     ],
   },
-  "2D_MODEL_ART": {
+  "2D_LIVE_MODEL_ART": {
     variables: {
       ...POSSIBLE_ART_VARIABLES,
       Linestyle: { enabled: false },
       Background: { enabled: false },
     },
     pricing: [
-      { selected: true, type: "icon", price: 650 },
-      { selected: false, type: "half body", price: 1150 },
-      { selected: false, type: "full body", price: 1550 },
+      { selected: true, type: "Icon", price: 650 },
+      { selected: false, type: "Half Body", price: 1150 },
+      { selected: false, type: "Full Body", price: 1550 },
     ],
   },
 };
@@ -67,9 +67,8 @@ export default function Pricing() {
       });
     });
 
-    const flattened = mainPrices.concat(variablePrices.flat());
-
-    const total = flattened
+    const total = mainPrices
+      .concat(variablePrices.flat())
       .filter((item) => item !== undefined)
       .reduce((total, num) => num + total, 0);
 
@@ -92,7 +91,7 @@ export default function Pricing() {
                 setState({ type: option, data: TYPES_OF_CHARACTERS[option] })
               }
             >
-              {option}
+              {option.replace(/_/g, " ")}
             </h1>
           );
         })}
@@ -224,13 +223,12 @@ const ArtVariableSelection = ({
                   })
                 }
               >
-                {item.type}
+                {item.type.replace(/_/g, " ")}
               </li>
             ))}
           </ul>
         </div>
       );
-
     default:
       return null;
   }
