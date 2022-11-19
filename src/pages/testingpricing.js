@@ -57,22 +57,19 @@ export default function Pricing() {
   const VARIABLE_OPTIONS = Object.keys(state.data.variables);
 
   React.useEffect(() => {
-    const mainPrices = state.data.pricing.map((item, index) =>
-      item.selected ? item.price : 0
+    setPrice(
+      state.data.pricing
+        .map((item, index) => (item.selected ? item.price : 0))
+        .concat(
+          VARIABLE_OPTIONS.map((item, index) => {
+            return state.data?.variables[item]?.pricing?.map((_, idx) => {
+              return _.selected ? _.price : 0;
+            });
+          }).flat()
+        )
+        .filter((item) => item !== undefined)
+        .reduce((total, num) => num + total, 0)
     );
-
-    const variablePrices = VARIABLE_OPTIONS.map((item, index) => {
-      return state.data?.variables[item]?.pricing?.map((_, idx) => {
-        return _.selected ? _.price : 0;
-      });
-    });
-
-    const total = mainPrices
-      .concat(variablePrices.flat())
-      .filter((item) => item !== undefined)
-      .reduce((total, num) => num + total, 0);
-
-    setPrice(total);
   }, [state]);
 
   return (
