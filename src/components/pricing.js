@@ -13,7 +13,7 @@ const POSSIBLE_ART_VARIABLES = {
     type: "CHECKBOX",
     pricing: [{ selected: false, type: "default", price: 150 }],
   },
-  Linestyle: {
+  Line_Art_Style: {
     description: "Please select your preferred linestyle.",
     enabled: true,
     type: "DROPDOWN",
@@ -74,10 +74,10 @@ export default function Pricing({ setPrice }) {
   }, [state]);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-3">
       <div className="relative z-10 flex flex-col justify-center gap-3">
         <div className="flex flex-col">
-          <div className="p-5 rounded-tr-2xl rounded-tl-2xl bg-[#f9f9f9] flex">
+          <div className="p-3 rounded-tr-2xl rounded-tl-2xl bg-[#f9f9f9] flex">
             <div>
               <h1 className="font-medium leading-loose tracking-tighter text-md">
                 Type of Commission
@@ -106,7 +106,7 @@ export default function Pricing({ setPrice }) {
             </ul>
           </div>
 
-          <div className="p-5 rounded-br-2xl rounded-bl-2xl bg-[#f9f9f9] flex border-t border-[#f0f0f0] ">
+          <div className="p-3 rounded-br-2xl rounded-bl-2xl bg-[#f9f9f9] flex border-t border-[#f0f0f0] ">
             <div>
               <h1 className="font-medium leading-loose tracking-tighter text-md">
                 Style of Commission
@@ -120,7 +120,7 @@ export default function Pricing({ setPrice }) {
                 return (
                   <li
                     key={index}
-                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md  transition-[background]  ${
+                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md transition-[background]  ${
                       item.selected ? "bg-white" : "text-inherit"
                     }`}
                     onClick={() =>
@@ -181,7 +181,7 @@ const ArtVariableSelection = ({
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
-        <div className="p-5 rounded-2xl bg-[#f9f9f9] flex items-center">
+        <div className="p-3 rounded-2xl bg-[#f9f9f9] flex items-center">
           <div>
             <h1 className="font-medium leading-loose tracking-tighter text-md">
               {variable.replace(/_/g, " ")}:
@@ -235,7 +235,7 @@ const ArtVariableSelection = ({
 
     case "DROPDOWN":
       return (
-        <div className="p-5 rounded-2xl bg-[#f9f9f9] flex">
+        <div className="p-3 rounded-2xl bg-[#f9f9f9] flex">
           <div>
             <h1 className="font-medium leading-loose tracking-tighter text-md">
               {variable.replace(/_/g, " ")}:
