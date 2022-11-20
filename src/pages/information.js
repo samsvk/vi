@@ -5,9 +5,9 @@ export default function Information() {
   const [price, setPrice] = useState(0);
   return (
     <div className="w-full h-full min-h-screen text-black bg-white min-w-screen font-inter">
-      <div className="flex flex-col max-w-2xl gap-8 py-12 mx-auto">
+      <div className="flex flex-col max-w-2xl gap-10 py-12 mx-auto">
         <section>
-          <h1 className="text-[28px] font-medium tracking-tighter leading-loose">
+          <h1 className="text-[28px] font-medium tracking-tighter leading-none mb-1.5">
             Price Calculator: <span className="">${price}</span>
           </h1>
           <p className="text-sm font-medium leading-snug tracking-tight opacity-40">
@@ -20,12 +20,13 @@ export default function Information() {
         </section>
 
         <section>
-          <h1 className="text-[28px] font-medium tracking-tighter leading-loose">
+          <h1 className="text-[28px] font-medium tracking-tighter leading-none mb-1.5">
             Contact Information
           </h1>
           <p className="text-sm font-medium leading-snug tracking-tight opacity-40">
             If you're interested in commissioning, please contact me via any of the
-            following social channels.
+            following social channels. My preferred point of contact is email as I
+            check them daily!
           </p>
           <Socials />
         </section>
