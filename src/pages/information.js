@@ -7,7 +7,7 @@ export default function Information() {
       <div className="flex flex-col max-w-2xl gap-10 py-12 mx-auto">
         <section>
           <h1 className="text-[28px] font-medium tracking-tighter leading-loose">
-            Vi's Commission Information
+            Vi's Commission Information: <span className="">${price}</span>
           </h1>
           <p className="text-sm font-medium leading-snug tracking-tight opacity-40">
             Please use the below pricing calculator for a rough estimate on your

@@ -1,21 +1,20 @@
 import * as React from "react";
-import { RiCheckLine } from "react-icons/ri";
 
 const POSSIBLE_ART_VARIABLES = {
   Background: {
-    description: "description",
+    description: "My background style is simplistic, but help overall composition.",
     enabled: true,
     type: "CHECKBOX",
     pricing: [{ selected: false, type: "default", price: 50 }],
   },
   Basic_Commercial_Rights: {
-    description: "description",
+    description: "For basic commerical rights such as using it on Merchandise.",
     enabled: true,
     type: "CHECKBOX",
     pricing: [{ selected: false, type: "default", price: 150 }],
   },
   Linestyle: {
-    description: "description",
+    description: "Please select your preferred linestyle.",
     enabled: true,
     type: "DROPDOWN",
     pricing: [
@@ -76,7 +75,7 @@ export default function Pricing({ setPrice }) {
 
   return (
     <div className="w-full">
-      <div className="relative z-10 flex flex-col justify-center gap-5">
+      <div className="relative z-10 flex flex-col justify-center gap-3">
         <div className="flex flex-col">
           <div className="p-5 rounded-tr-2xl rounded-tl-2xl bg-[#f9f9f9] flex">
             <div>
@@ -93,7 +92,7 @@ export default function Pricing({ setPrice }) {
                 return (
                   <li
                     key={index}
-                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
+                    className={`py-2 px-2.5 bg-white/5 rounded-xl border transition-[background] border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
                       isSelected === option ? "bg-white" : "text-inherit"
                     }`}
                     onClick={() =>
@@ -121,7 +120,7 @@ export default function Pricing({ setPrice }) {
                 return (
                   <li
                     key={index}
-                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
+                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md  transition-[background]  ${
                       item.selected ? "bg-white" : "text-inherit"
                     }`}
                     onClick={() =>
@@ -148,15 +147,10 @@ export default function Pricing({ setPrice }) {
           </div>
         </div>
 
-        <section>
-          <h1 className="text-[28px] font-medium tracking-tighter leading-loose">
-            Commission Variables
-          </h1>
-        </section>
-
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-3">
           {VARIABLE_OPTIONS.map((variable, index) => {
             const variableOptions = state.data.variables[variable];
+            if (!variableOptions.enabled) return null;
             return (
               <div key={index}>
                 <ArtVariableSelection
@@ -187,18 +181,27 @@ const ArtVariableSelection = ({
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
-        <div className="p-5 rounded-2xl bg-[#f9f9f9] flex">
-          <ul className="flex items-center gap-4">
-            <div>
-              <h1 className="font-medium leading-loose tracking-tighter text-md">
-                {variable.replace(/_/g, " ")}:
-              </h1>
-              <p className="text-xs font-medium leading-snug tracking-tight opacity-40">
-                Selected the relevant character type.
-              </p>
-            </div>
+        <div className="p-5 rounded-2xl bg-[#f9f9f9] flex items-center">
+          <div>
+            <h1 className="font-medium leading-loose tracking-tighter text-md">
+              {variable.replace(/_/g, " ")}:
+            </h1>
+            <p className="text-xs font-medium leading-snug tracking-tight opacity-40 max-w-[220px]">
+              {variableOptions.description}
+            </p>
+          </div>
 
-            <li
+          <div
+            className={`relative ml-auto w-[60px]  min-h-[30px] rounded-full flex items-center px-[4px]
+            transition-[background] 
+                     ${
+                       state.data.variables[variable].pricing[0].selected
+                         ? "bg-green-500"
+                         : " bg-[#f0f0f0]"
+                     }
+          `}
+          >
+            <span
               onClick={() =>
                 setState(() => {
                   return {
@@ -218,32 +221,35 @@ const ArtVariableSelection = ({
                   };
                 })
               }
-              className={`text-md w-6 h-6 flex items-center justify-center hover:cursor-pointer
-                  transition-[background] bg-black rounded-xl border border-white/5 ${
-                    state.data.variables[variable].pricing[0].selected
-                      ? "bg-green-900/10 border-green-700 text-green-700"
-                      : "text-inherit"
-                  }`}
-            >
-              {state.data.variables[variable].pricing[0].selected && (
-                <RiCheckLine style={{ verticalAlign: "middle" }} />
-              )}
-            </li>
-          </ul>
+              className={`block absolute h-[24px] w-[24px] bg-white rounded-full
+                ${
+                  state.data.variables[variable].pricing[0].selected
+                    ? "right-[4px]"
+                    : "text-inherit"
+                }
+              `}
+            />
+          </div>
         </div>
       );
+
     case "DROPDOWN":
       return (
-        <div className="py-3 border-b border-white/5">
-          <ul className="flex items-center gap-4">
-            <label className="text-xs opacity-50 ">
+        <div className="p-5 rounded-2xl bg-[#f9f9f9] flex">
+          <div>
+            <h1 className="font-medium leading-loose tracking-tighter text-md">
               {variable.replace(/_/g, " ")}:
-            </label>
+            </h1>
+            <p className="text-xs font-medium leading-snug tracking-tight opacity-40 max-w-[220px]">
+              {variableOptions.description}
+            </p>
+          </div>
+          <ul className="flex items-center gap-4 ml-auto bg-[#f0f0f0] rounded-2xl p-1">
             {variableOptions.pricing.map((item, index) => (
               <li
-                className={`py-1 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer  ${
+                className={`py-2 px-2.5 bg-white/5 rounded-xl border transition-[background] border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
                   state.data.variables[variable].pricing[index].selected
-                    ? "bg-green-900/10 border-green-700 text-green-700"
+                    ? "bg-white"
                     : "text-inherit"
                 }`}
                 key={index}
