@@ -32,7 +32,10 @@ export default function Socials() {
   return (
     <div className="grid grid-cols-2 gap-3 mt-3">
       {SOCIALS_DATA.map((social, index) => (
-        <div className="p-3 rounded-2xl bg-[#f9f9f9] flex flex-1 hover:cursor-pointer">
+        <div
+          key={index}
+          className="p-3 rounded-2xl bg-[#f9f9f9] flex flex-1 hover:cursor-pointer"
+        >
           <div className="h-[60px] max-h-[60px] max-w-[90px] w-[60px] min-w-[60px] min-h-[60px] bg-[#f0f0f0] rounded-full mr-3 flex items-center justify-center text-2xl">
             <span className="opacity-40">{social.icon}</span>
           </div>
