@@ -23,6 +23,11 @@ const FAQ_DATA = [
     description:
       "All orders are final and once payment complete. (exceptions can be made if NO work has been done)",
   },
+  {
+    title: "Private Commissions",
+    description:
+      "I stream all my commissions on Twitch however, I am happy to keep commissions private if requested and agreed too before payment has been made.",
+  },
 ];
 
 export const Item = ({ item }) => {
