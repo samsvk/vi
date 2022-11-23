@@ -30,7 +30,7 @@ export default function Information() {
             Please use the below pricing calculator for a rough estimate on your
             commission price. Using this calcualtor allows you and I to have an
             understanding of your commission desires and allows me to accurately
-            create what you`&apos;`re looking for.
+            create what you&apos;re looking for.
           </p>
           <Pricing setPrice={setPrice} />
         </section>
@@ -40,9 +40,9 @@ export default function Information() {
             Contact Information
           </h1>
           <p className="text-sm font-medium leading-snug tracking-tight opacity-40">
-            If you`&apos;`re interested in commissioning, please contact me via any
-            of the following social channels. My preferred point of contact is email
-            as I check them daily!
+            If you&apos;re interested in commissioning, please contact me via any of
+            the following social channels. My preferred point of contact is email as
+            I check them daily!
           </p>
           <Socials />
         </section>
