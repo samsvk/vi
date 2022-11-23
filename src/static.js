@@ -133,7 +133,7 @@ export const SOCIALS = [
     icon: <IoLogoTwitch />,
   },
   {
-    url: "https://discord.gg/",
+    url: "https://discord.gg/pxMPdxGhKW",
     name: "Discord",
     icon: <FaDiscord />,
     at: "VivixStar#2959",
