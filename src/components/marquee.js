@@ -13,12 +13,12 @@ export default function Marquee() {
     refreshInterval: 0,
   });
   return (
-    <div className="absolute top-0 flex w-full text-xs font-light bg-black">
+    <div className="absolute top-0 flex w-full text-xs font-light bg-[#f9f9f9] text-black">
       <div className="relative flex flex-row w-full py-1 overflow-x-hidden">
         {typeof data?.data === "string" ? (
           <>
             {" "}
-            <div className="flex w-full gap-12 text-center whitespace-nowrap">
+            <div className="flex w-full gap-12 text-xs font-medium leading-snug tracking-tight text-center whitespace-nowrap opacity-40">
               <span className="flex-1">
                 Commissions:{" "}
                 {data?.data?.split(" ")[1]?.toLowerCase()?.includes("closed") ? (
@@ -30,7 +30,7 @@ export default function Marquee() {
             </div>
           </>
         ) : (
-          <div className="flex w-full gap-12 text-center whitespace-nowrap">
+          <div className="flex w-full gap-12 text-xs font-medium leading-snug tracking-tight text-center whitespace-nowrap opacity-40">
             <span className="flex-1">Loading Commission Status...</span>
           </div>
         )}

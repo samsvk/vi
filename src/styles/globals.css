@@ -14,7 +14,7 @@
   }
 }
 body {
-  @apply w-full h-full text-white bg-main-default;
+  @apply w-full h-full text-white bg-white;
 }
 
 @layer components {

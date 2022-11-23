@@ -17,8 +17,8 @@ export const WORK = [
     },
   },
   {
-    name: "svk",
-    url: "14.jpg",
+    name: "bao",
+    url: "14.jpeg",
     pos: {
       col: "col-span-1",
       row: "row-span-2",
@@ -53,7 +53,7 @@ export const WORK = [
     },
   },
   {
-    name: "silvervale",
+    name: "DeputyARUUU",
     url: "4.jpeg",
     pos: {
       col: "col-span-1",
@@ -65,7 +65,7 @@ export const WORK = [
     },
   },
   {
-    name: "branscuit",
+    name: "vivired",
     url: "5.jpeg",
     pos: {
       col: "col-span-1",
@@ -77,7 +77,7 @@ export const WORK = [
     },
   },
   {
-    name: "momotexx",
+    name: "vivixstar",
     url: "6.jpeg",
     pos: {
       col: "col-span-1",
@@ -89,7 +89,7 @@ export const WORK = [
     },
   },
   {
-    name: "xaela",
+    name: "obkatiekat",
     url: "8.jpeg",
     pos: {
       col: "col-span-1",
@@ -101,7 +101,7 @@ export const WORK = [
     },
   },
   {
-    name: "commission",
+    name: "vivi x svk",
     url: "9.jpeg",
     pos: {
       col: "col-span-2",
@@ -113,8 +113,8 @@ export const WORK = [
     },
   },
   {
-    name: "melparty",
-    url: "13.jpeg",
+    name: "gawr",
+    url: "13.jpg",
     pos: {
       col: "col-span-1",
       row: "row-span-1",
@@ -145,9 +145,9 @@ export const SOCIALS = [
     at: "@vivixtar",
   },
   {
-    url: "mailto:green.tea.leaf97@gmail.com",
+    url: "mailto:vivixstar628@gmail.com",
     name: "Email",
     icon: <MdEmail />,
-    at: "@green.tea.leaf97@gmail.com",
+    at: "@vivixstar628@gmail.com",
   },
 ];

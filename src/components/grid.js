@@ -10,7 +10,7 @@ export default function Grid() {
           {Data.map((item, index) => (
             <div
               key={index}
-              className={`${item.pos.col} ${item.pos.row} overflow-hidden`}
+              className={`${item.pos.col} ${item.pos.row} overflow-hidden text-black`}
             >
               <h1 className="mb-1 text-xs font-light uppercase">
                 0{index + 1} / {item.name}
