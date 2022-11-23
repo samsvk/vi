@@ -1,12 +1,14 @@
 import Pricing from "../components/pricing";
 import Socials from "../components/socials";
 import FAQ from "../components/faq";
+import Header from "../components/header";
 import { useState } from "react";
 export default function Information() {
   const [price, setPrice] = useState(0);
   return (
-    <div className="w-full h-full min-h-screen text-black bg-white min-w-screen font-inter">
-      <div className="flex flex-col max-w-2xl gap-12 py-12 mx-auto">
+    <div className="w-full h-full min-h-screen text-black bg-white min-w-screen">
+      <Header />
+      <div className="flex flex-col max-w-2xl gap-12 py-12 mx-auto font-inter">
         <section>
           <h1 className="text-[28px] font-medium tracking-tighter leading-none mb-1.5">
             Frequently Asked Questions

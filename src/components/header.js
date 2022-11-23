@@ -13,8 +13,8 @@ export default function Header() {
       <ul className="pl-[12px] absolute bottom-0 flex items-start w-full gap-5 text-left font-light text-xs">
         <li className="w-max">
           <Link href={`${route === "information" ? "/" : "information"}`}>
-            <span className="relative transition-[cubic-bezier(.63,.04,.34,0.92)] text-black duration-150 block hover:cursor-pointer after:absolute after:h-[1px] after:content-[''] after:bottom-[-1px] after:left-0 after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap">
-              {route === "information" ? "Recent Work" : "Information"}
+            <span className="relative transition-[cubic-bezier(.63,.04,.34,0.92)] text-black duration-150 block hover:cursor-pointer after:absolute after:h-[1px] after:content-[''] after:bottom-[-1px] after:left-0 font-inherit after:bg-white after:w-0 hover:after:w-full after:duration-150 whitespace-nowrap">
+              {route === "information" ? "Projects" : "Information"}
             </span>
           </Link>
         </li>
