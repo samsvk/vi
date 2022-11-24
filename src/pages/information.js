@@ -19,7 +19,7 @@ export default function Information() {
               return (
                 <li
                   key={index}
-                  className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                  className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md hover:bg-gray-100`}
                 >
                   <a className="flex gap-1" href={option.url}>

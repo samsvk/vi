@@ -90,7 +90,7 @@ export default function Pricing({ setPrice }) {
                 return (
                   <li
                     key={index}
-                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md
                     ${isSelected === option ? "bg-gray-100" : "text-inherit"}`}
                     onClick={() =>
@@ -116,7 +116,7 @@ export default function Pricing({ setPrice }) {
                 return (
                   <li
                     key={index}
-                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background]  hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md
                     ${item.selected ? "bg-gray-100" : "text-inherit"}`}
                     onClick={() =>
@@ -190,7 +190,7 @@ const ArtVariableSelection = ({
 
             <ul className="flex items-center gap-3">
               <li
-                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background]  hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md
                     ${
                       state.data.variables[variable].pricing[0].selected
@@ -221,7 +221,7 @@ const ArtVariableSelection = ({
               </li>
 
               <li
-                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background]  hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md
                     ${
                       !state.data.variables[variable].pricing[0].selected
@@ -270,7 +270,7 @@ const ArtVariableSelection = ({
                 return (
                   <li
                     key={index}
-                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background]  hover:cursor-pointer
                     font-medium leading-none tracking-tighter text-md
                     ${
                       state.data.variables[variable].pricing[index].selected
