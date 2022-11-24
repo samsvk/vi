@@ -36,7 +36,7 @@ const TYPES_OF_CHARACTERS = {
       { selected: false, type: "Full Body", price: 650 },
     ],
   },
-  "2D_Live_Model_Art": {
+  "2D_Model_Art": {
     variables: {
       ...POSSIBLE_ART_VARIABLES,
       Linestyle: { enabled: false },
@@ -74,27 +74,25 @@ export default function Pricing({ setPrice }) {
   }, [state]);
 
   return (
-    <div className="w-full mt-3">
-      <div className="relative z-10 flex flex-col justify-center gap-3">
-        <div className="flex flex-col">
-          <div className="p-3 rounded-tr-2xl rounded-tl-2xl bg-[#f9f9f9] flex">
-            <div>
-              <h1 className="font-medium leading-loose tracking-tighter text-md">
-                Type of Commission
-              </h1>
-              <p className="text-xs font-medium leading-snug tracking-tight opacity-40">
-                Selected the relevant character type.
-              </p>
-            </div>
-            <ul className="flex items-center gap-4 ml-auto bg-[#f0f0f0] rounded-2xl p-1">
+    <div className="w-full">
+      <div className="relative z-10 flex flex-col justify-center">
+        <div className="flex flex-col gap-6 mt-6">
+          <div className="flex flex-col">
+            <h1 className="font-medium leading-none tracking-tighter text-md">
+              Comission Type:
+            </h1>
+            <p className="my-2 text-xs font-medium leading-snug tracking-tight opacity-40">
+              Please select the relevant character type for your commission.
+            </p>
+            <ul className="flex items-center gap-3">
               {CHARACTER_OPTIONS.map((option, index) => {
                 const isSelected = state.type;
                 return (
                   <li
                     key={index}
-                    className={`py-2 px-2.5 bg-white/5 rounded-xl border transition-[background] border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
-                      isSelected === option ? "bg-white" : "text-inherit"
-                    }`}
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    font-medium leading-none tracking-tighter text-md
+                    ${isSelected === option ? "bg-gray-100" : "text-inherit"}`}
                     onClick={() =>
                       setState({ type: option, data: TYPES_OF_CHARACTERS[option] })
                     }
@@ -106,23 +104,21 @@ export default function Pricing({ setPrice }) {
             </ul>
           </div>
 
-          <div className="p-3 rounded-br-2xl rounded-bl-2xl bg-[#f9f9f9] flex border-t border-[#f0f0f0] ">
-            <div>
-              <h1 className="font-medium leading-loose tracking-tighter text-md">
-                Style of Commission
-              </h1>
-              <p className="text-xs font-medium leading-snug tracking-tight opacity-40">
-                Selected the relevant character type.
-              </p>
-            </div>
-            <ul className="flex items-center gap-4 ml-auto bg-[#f0f0f0] rounded-2xl p-1">
+          <div className="flex flex-col">
+            <h1 className="font-medium leading-none tracking-tighter text-md">
+              Style:
+            </h1>
+            <p className="my-2 text-xs font-medium leading-snug tracking-tight opacity-40">
+              Selected the relevant character style.
+            </p>
+            <ul className="flex items-center gap-3">
               {state.data.pricing.map((item, index) => {
                 return (
                   <li
                     key={index}
-                    className={`py-2 px-2.5 bg-white/5 rounded-xl border border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md transition-[background]  ${
-                      item.selected ? "bg-white" : "text-inherit"
-                    }`}
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    font-medium leading-none tracking-tighter text-md
+                    ${item.selected ? "bg-gray-100" : "text-inherit"}`}
                     onClick={() =>
                       setState(() => {
                         return {
@@ -139,7 +135,7 @@ export default function Pricing({ setPrice }) {
                       })
                     }
                   >
-                    {item.type}
+                    {item.type.replace(/_/g, " ")}
                   </li>
                 );
               })}
@@ -147,7 +143,7 @@ export default function Pricing({ setPrice }) {
           </div>
         </div>
 
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-6 pt-6 mt-6 border-t border-gray-100">
           {VARIABLE_OPTIONS.map((variable, index) => {
             const variableOptions = state.data.variables[variable];
             if (!variableOptions.enabled) return null;
@@ -164,6 +160,8 @@ export default function Pricing({ setPrice }) {
             );
           })}
         </ul>
+
+        <div className="flex flex-col gap-6 pt-6 mt-6 border-t border-gray-100"></div>
       </div>
     </div>
   );
@@ -181,78 +179,24 @@ const ArtVariableSelection = ({
   switch (variableOptions.type) {
     case "CHECKBOX":
       return (
-        <div className="p-3 rounded-2xl bg-[#f9f9f9] flex items-center">
-          <div>
-            <h1 className="font-medium leading-loose tracking-tighter text-md">
+        <>
+          <div className="flex flex-col">
+            <h1 className="font-medium leading-none tracking-tighter text-md">
               {variable.replace(/_/g, " ")}:
             </h1>
-            <p className="text-xs font-medium leading-snug tracking-tight opacity-40 max-w-[220px]">
+            <p className="my-2 text-xs font-medium leading-snug tracking-tight opacity-40">
               {variableOptions.description}
             </p>
-          </div>
 
-          <div
-            className={`relative ml-auto w-[60px]  min-h-[30px] rounded-full flex items-center px-[4px]
-            transition-[background] 
-                     ${
-                       state.data.variables[variable].pricing[0].selected
-                         ? "bg-green-500"
-                         : " bg-[#f0f0f0]"
-                     }
-          `}
-          >
-            <span
-              onClick={() =>
-                setState(() => {
-                  return {
-                    ...state,
-                    data: {
-                      ...state.data,
-                      variables: {
-                        ...state.data.variables,
-                        [variable]: {
-                          ...state.data.variables[variable],
-                          pricing: state.data.variables[variable].pricing.map(
-                            (item) => ({ ...item, selected: !item.selected })
-                          ),
-                        },
-                      },
-                    },
-                  };
-                })
-              }
-              className={`block absolute h-[24px] w-[24px] bg-white rounded-full
-                ${
-                  state.data.variables[variable].pricing[0].selected
-                    ? "right-[4px]"
-                    : "text-inherit"
-                }
-              `}
-            />
-          </div>
-        </div>
-      );
-
-    case "DROPDOWN":
-      return (
-        <div className="p-3 rounded-2xl bg-[#f9f9f9] flex">
-          <div>
-            <h1 className="font-medium leading-loose tracking-tighter text-md">
-              {variable.replace(/_/g, " ")}:
-            </h1>
-            <p className="text-xs font-medium leading-snug tracking-tight opacity-40 max-w-[220px]">
-              {variableOptions.description}
-            </p>
-          </div>
-          <ul className="flex items-center gap-4 ml-auto bg-[#f0f0f0] rounded-2xl p-1">
-            {variableOptions.pricing.map((item, index) => (
+            <ul className="flex items-center gap-3">
               <li
-                className={`py-2 px-2.5 bg-white/5 rounded-xl border transition-[background] border-white/5 hover:cursor-pointer font-medium leading-loose tracking-tight text-md ${
-                  state.data.variables[variable].pricing[index].selected
-                    ? "bg-white"
-                    : "text-inherit"
-                }`}
-                key={index}
+                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    font-medium leading-none tracking-tighter text-md
+                    ${
+                      state.data.variables[variable].pricing[0].selected
+                        ? "bg-gray-100"
+                        : "text-inherit"
+                    }`}
                 onClick={() =>
                   setState(() => {
                     return {
@@ -264,11 +208,7 @@ const ArtVariableSelection = ({
                           [variable]: {
                             ...state.data.variables[variable],
                             pricing: state.data.variables[variable].pricing.map(
-                              (item, idx) => {
-                                return idx === index
-                                  ? { ...item, selected: true }
-                                  : { ...item, selected: false };
-                              }
+                              (item) => ({ ...item, selected: true })
                             ),
                           },
                         },
@@ -277,11 +217,97 @@ const ArtVariableSelection = ({
                   })
                 }
               >
-                {item.type.replace(/_/g, " ")}
+                Yes
               </li>
-            ))}
-          </ul>
-        </div>
+
+              <li
+                className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    font-medium leading-none tracking-tighter text-md
+                    ${
+                      !state.data.variables[variable].pricing[0].selected
+                        ? "bg-gray-100"
+                        : "text-inherit"
+                    }`}
+                onClick={() =>
+                  setState(() => {
+                    return {
+                      ...state,
+                      data: {
+                        ...state.data,
+                        variables: {
+                          ...state.data.variables,
+                          [variable]: {
+                            ...state.data.variables[variable],
+                            pricing: state.data.variables[variable].pricing.map(
+                              (item) => ({ ...item, selected: false })
+                            ),
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+              >
+                No
+              </li>
+            </ul>
+          </div>
+        </>
+      );
+
+    case "DROPDOWN":
+      return (
+        <>
+          <div className="flex flex-col">
+            <h1 className="font-medium leading-none tracking-tighter text-md">
+              {variable.replace(/_/g, " ")}:
+            </h1>
+            <p className="my-2 text-xs font-medium leading-snug tracking-tight opacity-40">
+              {variableOptions.description}
+            </p>
+            <ul className="flex items-center gap-3">
+              {variableOptions.pricing.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={`border-gray-100 rounded-md text-black/40 px-2.5 py-2 border transition-[background] border-white/5 hover:cursor-pointer
+                    font-medium leading-none tracking-tighter text-md
+                    ${
+                      state.data.variables[variable].pricing[index].selected
+                        ? "bg-gray-100"
+                        : "text-inherit"
+                    }`}
+                    onClick={() =>
+                      setState(() => {
+                        return {
+                          ...state,
+                          data: {
+                            ...state.data,
+                            variables: {
+                              ...state.data.variables,
+                              [variable]: {
+                                ...state.data.variables[variable],
+                                pricing: state.data.variables[variable].pricing.map(
+                                  (item, idx) => {
+                                    return idx === index
+                                      ? { ...item, selected: true }
+                                      : { ...item, selected: false };
+                                  }
+                                ),
+                              },
+                            },
+                          },
+                        };
+                      })
+                    }
+                  >
+                    {item.type.replace(/_/g, " ")}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </>
       );
     default:
       return null;
