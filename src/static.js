@@ -29,8 +29,8 @@ export const WORK = [
     },
   },
   {
-    name: "ironmouse",
-    url: "2.jpeg",
+    name: "Vivixstar",
+    url: "2.jpg",
     pos: {
       col: "col-span-1",
       row: "row-span-3",
