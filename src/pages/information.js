@@ -9,12 +9,12 @@ export default function Information() {
   return (
     <div className="w-full h-full min-h-screen text-black bg-white min-w-screen">
       {/* <Header /> */}
-      <div className="flex flex-col max-w-2xl gap-12 py-12 mx-auto font-inter">
+      <div className="flex flex-col max-w-2xl gap-12 px-5 py-12 mx-auto font-inter">
         <section className="flex flex-col">
           <h1 className="text-[28px] font-medium tracking-tighter leading-none mb-5">
             Frequently Asked Questions
           </h1>
-          <ul className="flex items-center gap-3 mb-5">
+          <ul className="flex flex-wrap items-center gap-3 mb-5">
             {SOCIALS.map((option, index) => {
               return (
                 <li
