@@ -6,7 +6,7 @@ const FAQ_DATA = [
   {
     title: "Payments",
     description:
-      "PayPal is the only transaction service I use for payments. Payments must be paid in full before commission work begins. Depending on the size of comission, payment structures/plans could be considered. I DO NOT WORK FOR FREE UNDER ANY CIRCUMSTANCE",
+      "PayPal is the only transaction service I use for payments. Payments must be paid in full before commission work begins. Depending on the size of comission, payment structures/plans could be considered.",
   },
   {
     title: "Comission Progress/Process",
