@@ -101,7 +101,7 @@ export const WORK = [
     },
   },
   {
-    name: "vivi x svk",
+    name: "vivi x swk",
     url: "9.jpeg",
     pos: {
       col: "col-span-2",
